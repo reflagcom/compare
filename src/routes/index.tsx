@@ -1,39 +1,27 @@
-import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
+import { createFileRoute, Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/')({
-  component: App,
-})
+export const Route = createFileRoute("/")({
+	component: Home,
+});
 
-function App() {
-  return (
-    <div className="text-center">
-      <header className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
-        <img
-          src={logo}
-          className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
-          alt="logo"
-        />
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
-      </header>
-    </div>
-  )
+function Home() {
+	return (
+		<div className="p-8">
+			<h1 className="text-4xl font-bold mb-8">Auth Provider Comparison</h1>
+			<div className="space-y-4">
+				<Link
+					to="/demo/table"
+					className="block p-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+				>
+					View Auth Providers Comparison Table
+				</Link>
+				<Link
+					to="/demo/tanstack-query"
+					className="block p-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+				>
+					TanStack Query Demo
+				</Link>
+			</div>
+		</div>
+	);
 }
