@@ -1,0 +1,73 @@
+# GitHub Copilot Instructions
+
+## Code Quality Workflow
+
+**IMPORTANT**: After editing any files, always run:
+
+1. **Format code**: `npm run format`
+2. **Lint code**: `npm run lint`
+3. **Fix any issues**: `npm run check` (runs both format and lint)
+
+These commands use Biome for fast formatting and linting.
+
+## Project Stack
+
+- **Framework**: TanStack Start (SPA mode)
+- **Router**: TanStack Router (file-based routing)
+- **State**: TanStack Query
+- **UI**: shadcn/ui components
+- **Styling**: Tailwind CSS v4
+- **Linting/Formatting**: Biome 2.2.4
+- **Build**: Vite 7.1.8
+- **Deployment**: Vercel (static SPA)
+
+## Code Style Preferences
+
+- Use **function declarations** for components (not arrow functions)
+- Export components at the bottom of the file when possible
+- Keep **TanStack Table** sorting and filtering logic in route components
+- Use **dark mode** by default (applied via `className="dark"` on `<html>`)
+- Prefer **server-side data** patterns even in SPA mode (for future SSR migration)
+
+## File Structure
+
+```
+src/
+├── routes/          # File-based routes (TanStack Router)
+├── components/      # Reusable React components
+│   └── ui/          # shadcn/ui components
+├── integrations/    # Third-party integrations (TanStack Query, etc.)
+├── lib/             # Utility functions
+└── data/            # Static data and demo data
+```
+
+## Common Commands
+
+- `npm run dev` - Start dev server (port 3000, fallback to 3001)
+- `npm run build` - Production build (outputs to `dist/`)
+- `npm run serve` - Preview production build
+- `npm test` - Run tests
+- `npm run format` - Format all files with Biome
+- `npm run lint` - Lint all files with Biome
+- `npm run check` - Run both format and lint
+
+## TanStack Router Conventions
+
+- Use `createFileRoute` for route components
+- Export route as `export const Route = createFileRoute('/path')({})`
+- Use `Route.useLoaderData()` to access loader data
+- Use `Route.useRouteContext()` to access route context
+- Avoid exporting non-route components from route files (causes bundle size warnings)
+
+## TanStack Query Integration
+
+- QueryClient is available via route context: `queryClient`
+- Use `setupRouterSsrQueryIntegration` for SSR (future)
+- Current implementation uses singleton pattern for client
+
+## Important Notes
+
+- **SPA Mode**: App runs in client-side only mode (no SSR currently)
+- **Vercel Deployment**: Uses rewrites to route all paths to `/index.html`
+- **Dark Mode**: Always enabled via `dark` class on root `<html>` element
+- **Type Safety**: Full TypeScript strict mode enabled

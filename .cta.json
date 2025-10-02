@@ -1,18 +1,18 @@
 {
-  "projectName": "compare",
-  "mode": "file-router",
-  "typescript": true,
-  "tailwind": true,
-  "packageManager": "npm",
-  "git": true,
-  "version": 1,
-  "framework": "react-cra",
-  "chosenAddOns": [
-    "biome",
-    "netlify",
-    "start",
-    "table",
-    "shadcn",
-    "tanstack-query"
-  ]
+	"projectName": "compare",
+	"mode": "file-router",
+	"typescript": true,
+	"tailwind": true,
+	"packageManager": "npm",
+	"git": true,
+	"version": 1,
+	"framework": "react-cra",
+	"chosenAddOns": [
+		"biome",
+		"netlify",
+		"start",
+		"table",
+		"shadcn",
+		"tanstack-query"
+	]
 }
