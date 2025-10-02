@@ -4,11 +4,9 @@ import viteReact from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 import viteTsConfigPaths from "vite-tsconfig-paths";
-import netlify from "./vite-plugins/netlify.ts";
 
 const config = defineConfig({
 	plugins: [
-		netlify,
 		// this is the plugin that enables path aliases
 		viteTsConfigPaths({
 			projects: ["./tsconfig.json"],
