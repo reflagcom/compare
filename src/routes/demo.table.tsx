@@ -317,7 +317,13 @@ export type Provider = {
 const columnHelper = createColumnHelper<Provider>();
 
 // Sortable header component
-const SortableHeader = ({ column, children }: { column: Column<Provider>; children: React.ReactNode }) => {
+const SortableHeader = ({
+	column,
+	children,
+}: {
+	column: Column<Provider>;
+	children: React.ReactNode;
+}) => {
 	return (
 		<Button
 			variant="ghost"
@@ -332,7 +338,9 @@ const SortableHeader = ({ column, children }: { column: Column<Provider>; childr
 
 const columns = [
 	columnHelper.accessor("name", {
-		header: ({ column }) => <SortableHeader column={column}>Name</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>Name</SortableHeader>
+		),
 		cell: ({ getValue }) => {
 			const name = getValue() as string;
 			return (
@@ -344,39 +352,57 @@ const columns = [
 		},
 	}),
 	columnHelper.accessor("freeTier", {
-		header: ({ column }) => <SortableHeader column={column}>Free tier</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>Free tier</SortableHeader>
+		),
 		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
 	}),
 	columnHelper.accessor("paidPricing", {
-		header: ({ column }) => <SortableHeader column={column}>Paid pricing</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>Paid pricing</SortableHeader>
+		),
 		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
 	}),
 	columnHelper.accessor("openSource", {
-		header: ({ column }) => <SortableHeader column={column}>Open source</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>Open source</SortableHeader>
+		),
 		cell: ({ getValue }) => <div className="lowercase">{getValue()}</div>,
 	}),
 	columnHelper.accessor("selfHosted", {
-		header: ({ column }) => <SortableHeader column={column}>Self-hosted</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>Self-hosted</SortableHeader>
+		),
 		cell: ({ getValue }) => <div className="lowercase">{getValue()}</div>,
 	}),
 	columnHelper.accessor("mfa", {
-		header: ({ column }) => <SortableHeader column={column}>MFA</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>MFA</SortableHeader>
+		),
 		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
 	}),
 	columnHelper.accessor("rbac", {
-		header: ({ column }) => <SortableHeader column={column}>RBAC</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>RBAC</SortableHeader>
+		),
 		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
 	}),
 	columnHelper.accessor("frontendComponents", {
-		header: ({ column }) => <SortableHeader column={column}>Frontend SDKs</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>Frontend SDKs</SortableHeader>
+		),
 		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
 	}),
 	columnHelper.accessor("oAuth", {
-		header: ({ column }) => <SortableHeader column={column}>OAuth providers</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>OAuth providers</SortableHeader>
+		),
 		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
 	}),
 	columnHelper.accessor("sessionManagement", {
-		header: ({ column }) => <SortableHeader column={column}>Sessions</SortableHeader>,
+		header: ({ column }) => (
+			<SortableHeader column={column}>Sessions</SortableHeader>
+		),
 		cell: ({ getValue }) => <div className="lowercase">{getValue()}</div>,
 	}),
 ];
