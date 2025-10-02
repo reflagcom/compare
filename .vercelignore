@@ -1,9 +1,0 @@
-node_modules
-.git
-src
-.vscode
-.github
-*.log
-.DS_Store
-.nitro
-.vercel

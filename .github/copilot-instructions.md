@@ -12,14 +12,14 @@ These commands use Biome for fast formatting and linting.
 
 ## Project Stack
 
-- **Framework**: TanStack Start (SPA mode)
+- **Framework**: TanStack Start (SSR with Cloudflare Workers)
 - **Router**: TanStack Router (file-based routing)
 - **State**: TanStack Query
 - **UI**: shadcn/ui components
 - **Styling**: Tailwind CSS v4
 - **Linting/Formatting**: Biome 2.2.4
 - **Build**: Vite 7.1.8
-- **Deployment**: Vercel (static SPA)
+- **Deployment**: Cloudflare Workers
 
 ## Code Style Preferences
 
@@ -27,7 +27,7 @@ These commands use Biome for fast formatting and linting.
 - Export components at the bottom of the file when possible
 - Keep **TanStack Table** sorting and filtering logic in route components
 - Use **dark mode** by default (applied via `className="dark"` on `<html>`)
-- Prefer **server-side data** patterns even in SPA mode (for future SSR migration)
+- Prefer **server-side data** patterns for SSR compatibility
 
 ## File Structure
 
@@ -45,6 +45,7 @@ src/
 
 - `npm run dev` - Start dev server (port 3000, fallback to 3001)
 - `npm run build` - Production build (outputs to `dist/`)
+- `npm run deploy` - Deploy to Cloudflare Workers
 - `npm run serve` - Preview production build
 - `npm test` - Run tests
 - `npm run format` - Format all files with Biome
@@ -67,7 +68,7 @@ src/
 
 ## Important Notes
 
-- **SPA Mode**: App runs in client-side only mode (no SSR currently)
-- **Vercel Deployment**: Uses rewrites to route all paths to `/index.html`
+- **SSR Mode**: App runs with full server-side rendering on Cloudflare Workers
+- **Cloudflare Workers**: Use `npm run deploy` to deploy (requires wrangler login)
 - **Dark Mode**: Always enabled via `dark` class on root `<html>` element
 - **Type Safety**: Full TypeScript strict mode enabled
