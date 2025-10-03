@@ -404,7 +404,10 @@ const providers: Provider[] = [
 			customReports: { status: "strong", details: "Custom reports" },
 			dataExploration: { status: "strong", details: "Visual exploration" },
 			alerts: { status: "strong", details: "Custom alerts" },
-			sessionReplay: { status: "none", details: "Not available" },
+			sessionReplay: {
+				status: "strong",
+				details: "Growth plan: 20K replays/month free",
+			},
 			heatmaps: { status: "none", details: "Not available" },
 			userProfiles: { status: "strong", details: "User profiles" },
 			userJourneys: { status: "strong", details: "User flows" },
@@ -432,10 +435,10 @@ const providers: Provider[] = [
 			dataResidency: { status: "strong", details: "US & EU data centers" },
 			anonymization: { status: "strong", details: "Data deletion tools" },
 			compliance: { status: "strong", details: "SOC 2, GDPR, CCPA" },
-			freeTier: { status: "strong", details: "Free up to 20M events/month" },
+			freeTier: { status: "strong", details: "Free up to 1M events/month" },
 			pricingModel: {
 				status: "strong",
-				details: "$20/mo+ based on MTU (monthly tracked users)",
+				details: "Growth: $0.28 per 1K events after 1M free",
 			},
 			openSource: { status: "none", details: "Proprietary" },
 			selfHosted: { status: "none", details: "Cloud-only" },
@@ -509,11 +512,11 @@ const providers: Provider[] = [
 			compliance: { status: "strong", details: "SOC 2, GDPR, HIPAA" },
 			freeTier: {
 				status: "strong",
-				details: "Free Starter plan (10M events/mo)",
+				details: "Starter: 50K MTUs (Monthly Tracked Users), up to 10M events",
 			},
 			pricingModel: {
 				status: "strong",
-				details: "Based on MTU, custom pricing",
+				details: "Plus: $49/mo for 300K MTUs at $0.049/MTU",
 			},
 			openSource: { status: "none", details: "Proprietary" },
 			selfHosted: { status: "none", details: "Cloud-only" },

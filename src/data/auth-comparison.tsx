@@ -284,7 +284,7 @@ const providers: Provider[] = [
 			},
 			passkeys: {
 				status: "strong",
-				details: "WebAuthn/FIDO2 (paid plans only)",
+				details: "WebAuthn/FIDO2 (Enhanced Auth $100/mo addon)",
 			},
 			mfa: {
 				status: "strong",
