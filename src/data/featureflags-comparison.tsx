@@ -281,6 +281,7 @@ const providers: Provider[] = [
 	{
 		name: "Reflag",
 		logo: <ReflagLogo />,
+		website: "https://reflag.com",
 		tagline: {
 			status: "strong",
 			details: "Modern feature flag platform built for developer experience",
@@ -425,6 +426,7 @@ const providers: Provider[] = [
 	{
 		name: "LaunchDarkly",
 		logo: <LaunchDarklyLogo />,
+		website: "https://launchdarkly.com",
 		tagline: {
 			status: "strong",
 			details:
@@ -551,6 +553,7 @@ const providers: Provider[] = [
 	{
 		name: "Flagsmith",
 		logo: <FlagsmithLogo />,
+		website: "https://flagsmith.com",
 		tagline: {
 			status: "strong",
 			details: "Open source feature flag and remote config service",
@@ -691,6 +694,7 @@ const providers: Provider[] = [
 	{
 		name: "Unleash",
 		logo: <UnleashLogo />,
+		website: "https://www.getunleash.io",
 		tagline: {
 			status: "strong",
 			details: "Privacy-first open source feature toggle system",
@@ -834,6 +838,7 @@ const providers: Provider[] = [
 	{
 		name: "PostHog",
 		logo: <PostHogLogo />,
+		website: "https://posthog.com",
 		tagline: {
 			status: "strong",
 			details: "All-in-one product OS with feature flags built-in",
@@ -977,6 +982,7 @@ const providers: Provider[] = [
 	{
 		name: "Split",
 		logo: <SplitLogo />,
+		website: "https://www.split.io",
 		tagline: {
 			status: "strong",
 			details: "Feature delivery platform with built-in impact monitoring",
@@ -1120,6 +1126,7 @@ const providers: Provider[] = [
 	{
 		name: "GrowthBook",
 		logo: <GrowthBookLogo />,
+		website: "https://www.growthbook.io",
 		tagline: {
 			status: "strong",
 			details: "Open source feature flagging & A/B testing platform",
@@ -1263,6 +1270,7 @@ const providers: Provider[] = [
 	{
 		name: "DevCycle",
 		logo: <DevCycleLogo />,
+		website: "https://devcycle.com",
 		tagline: {
 			status: "strong",
 			details: "Developer-first feature flag management platform",
@@ -1406,6 +1414,7 @@ const providers: Provider[] = [
 	{
 		name: "ConfigCat",
 		logo: <ConfigCatLogo />,
+		website: "https://configcat.com",
 		tagline: {
 			status: "strong",
 			details: "Feature flag service with 10-minute setup",

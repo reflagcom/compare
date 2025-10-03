@@ -1,3 +1,4 @@
+import { useId } from "react";
 import RiKey2Line from "remixicon-react/Key2LineIcon";
 import RiMoneyDollarCircleLine from "remixicon-react/MoneyDollarCircleLineIcon";
 import RiPlugLine from "remixicon-react/PlugLineIcon";
@@ -40,54 +41,58 @@ const Auth0Logo = () => (
 		<path d="M21.98 7.448L19.62 0H4.347L2.02 7.448c-1.352 4.312.03 9.206 3.815 12.015L12.007 24l6.157-4.552c3.755-2.81 5.182-7.688 3.815-12.015l-6.16 4.58 2.343 7.45-6.157-4.597-6.158 4.58 2.358-7.433-6.188-4.55 7.63-.045L12.008 0l2.356 7.404 7.615.044z" />
 	</svg>
 );
+const SupabaseLogo = () => {
+	const gradientId0 = useId();
+	const gradientId1 = useId();
 
-const SupabaseLogo = () => (
-	<svg
-		className="w-5 h-5"
-		viewBox="0 0 109 113"
-		fill="none"
-		aria-label="Supabase logo"
-	>
-		<title>Supabase</title>
-		<path
-			fill="url(#supabase-gradient-0)"
-			d="M63.708 110.284c-2.86 3.601-8.658 1.628-8.727-2.97l-1.007-67.251h45.22c8.19 0 12.758 9.46 7.665 15.874z"
-		/>
-		<path
-			fill="url(#supabase-gradient-1)"
-			fillOpacity="0.2"
-			d="M63.708 110.284c-2.86 3.601-8.658 1.628-8.727-2.97l-1.007-67.251h45.22c8.19 0 12.758 9.46 7.665 15.874z"
-		/>
-		<path
-			fill="#3ECF8E"
-			d="M45.317 2.071c2.86-3.601 8.657-1.628 8.726 2.97l.442 67.251H9.83c-8.19 0-12.759-9.46-7.665-15.875z"
-		/>
-		<defs>
-			<linearGradient
-				id="supabase-gradient-0"
-				x1="53.974"
-				x2="94.163"
-				y1="54.974"
-				y2="71.829"
-				gradientUnits="userSpaceOnUse"
-			>
-				<stop stopColor="#249361" />
-				<stop offset="1" stopColor="#3ECF8E" />
-			</linearGradient>
-			<linearGradient
-				id="supabase-gradient-1"
-				x1="36.156"
-				x2="54.484"
-				y1="30.578"
-				y2="65.081"
-				gradientUnits="userSpaceOnUse"
-			>
-				<stop />
-				<stop offset="1" stopOpacity="0" />
-			</linearGradient>
-		</defs>
-	</svg>
-);
+	return (
+		<svg
+			className="w-5 h-5"
+			viewBox="0 0 109 113"
+			fill="none"
+			aria-label="Supabase logo"
+		>
+			<title>Supabase</title>
+			<path
+				fill={`url(#${gradientId0})`}
+				d="M63.708 110.284c-2.86 3.601-8.658 1.628-8.727-2.97l-1.007-67.251h45.22c8.19 0 12.758 9.46 7.665 15.874z"
+			/>
+			<path
+				fill={`url(#${gradientId1})`}
+				fillOpacity="0.2"
+				d="M63.708 110.284c-2.86 3.601-8.658 1.628-8.727-2.97l-1.007-67.251h45.22c8.19 0 12.758 9.46 7.665 15.874z"
+			/>
+			<path
+				fill="#3ECF8E"
+				d="M45.317 2.071c2.86-3.601 8.657-1.628 8.726 2.97l.442 67.251H9.83c-8.19 0-12.759-9.46-7.665-15.875z"
+			/>
+			<defs>
+				<linearGradient
+					id={gradientId0}
+					x1="53.974"
+					x2="94.163"
+					y1="54.974"
+					y2="71.829"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stopColor="#249361" />
+					<stop offset="1" stopColor="#3ECF8E" />
+				</linearGradient>
+				<linearGradient
+					id={gradientId1}
+					x1="36.156"
+					x2="54.484"
+					y1="30.578"
+					y2="65.081"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop />
+					<stop offset="1" stopOpacity="0" />
+				</linearGradient>
+			</defs>
+		</svg>
+	);
+};
 
 const AuthJsLogo = () => (
 	<svg
@@ -254,6 +259,7 @@ const providers: Provider[] = [
 	{
 		name: "Clerk",
 		logo: <ClerkLogo />,
+		website: "https://clerk.com",
 		tagline: {
 			status: "strong",
 			details:
@@ -346,6 +352,7 @@ const providers: Provider[] = [
 	{
 		name: "Auth0",
 		logo: <Auth0Logo />,
+		website: "https://auth0.com",
 		tagline: {
 			status: "strong",
 			details:
@@ -435,6 +442,7 @@ const providers: Provider[] = [
 	{
 		name: "Supabase Auth",
 		logo: <SupabaseLogo />,
+		website: "https://supabase.com/auth",
 		tagline: {
 			status: "strong",
 			details: "Open source auth with PostgreSQL Row Level Security",
@@ -526,6 +534,7 @@ const providers: Provider[] = [
 	{
 		name: "Auth.js (NextAuth)",
 		logo: <AuthJsLogo />,
+		website: "https://authjs.dev",
 		tagline: {
 			status: "strong",
 			details: "Free and open source authentication for the web",
@@ -623,6 +632,7 @@ const providers: Provider[] = [
 	{
 		name: "Firebase Auth",
 		logo: <FirebaseLogo />,
+		website: "https://firebase.google.com/products/auth",
 		tagline: {
 			status: "strong",
 			details:
@@ -718,6 +728,7 @@ const providers: Provider[] = [
 	{
 		name: "Lucia",
 		logo: <LuciaLogo />,
+		website: "https://lucia-auth.com",
 		tagline: {
 			status: "strong",
 			details:
@@ -795,6 +806,7 @@ const providers: Provider[] = [
 	{
 		name: "WorkOS",
 		logo: <WorkOSLogo />,
+		website: "https://workos.com",
 		tagline: {
 			status: "strong",
 			details:
@@ -869,6 +881,7 @@ const providers: Provider[] = [
 	{
 		name: "Keycloak",
 		logo: <KeycloakLogo />,
+		website: "https://www.keycloak.org",
 		tagline: {
 			status: "strong",
 			details:

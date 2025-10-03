@@ -4,18 +4,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ComparisonTable } from "../components/ComparisonTable";
 import { SITE } from "../config/site";
 // Import all site comparison configs
+import { analyticsComparisonConfig } from "../data/analytics-comparison";
 import { authComparisonConfig } from "../data/auth-comparison";
 import { featureFlagsComparisonConfig } from "../data/featureflags-comparison";
 import type { ComparisonConfig } from "../types/comparison";
 
-// TODO: Add these as you create them:
-// import { analyticsComparisonConfig } from "../data/analytics-comparison";
-
 // Map of site types to their configs
 const siteConfigs: Record<string, ComparisonConfig> = {
+	analytics: analyticsComparisonConfig,
 	auth: authComparisonConfig,
 	featureflags: featureFlagsComparisonConfig,
-	// analytics: analyticsComparisonConfig,
 };
 
 export const Route = createFileRoute("/")({

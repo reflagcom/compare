@@ -199,9 +199,14 @@ function ComparisonTable({ config }: ComparisonTableProps) {
 				header: () => (
 					<div className="flex flex-col items-center gap-3 py-4">
 						{providersByName[providerName].logo}
-						<span className="text-md font-bold text-center">
+						<a
+							href={providersByName[providerName].website}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-md font-bold text-center hover:underline hover:text-primary transition-colors"
+						>
 							{providerName}
-						</span>
+						</a>
 					</div>
 				),
 				cell: ({ getValue, row }) => {

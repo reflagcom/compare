@@ -12,6 +12,7 @@ export type FeatureValue = {
 export type Provider = {
 	name: string;
 	logo: React.ReactNode;
+	website: string;
 	tagline: FeatureValue;
 	features: Record<string, FeatureValue>;
 };
