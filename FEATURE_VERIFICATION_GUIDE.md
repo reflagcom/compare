@@ -11,12 +11,14 @@ To ensure accuracy and transparency, the comparison sites now support verifiable
 Use the `"unknown"` status when information cannot be verified or is uncertain.
 
 **Status Types:**
+
 - `"strong"` - Feature is fully supported and verified
 - `"partial"` - Feature is partially supported or has limitations
 - `"none"` - Feature is not available
 - `"unknown"` - **NEW** - Information is uncertain or cannot be verified
 
 **Visual Indicators:**
+
 - ✅ Strong: Green checkmark
 - ⚠️ Partial: Yellow warning
 - ❌ None: Gray X
@@ -63,6 +65,7 @@ customSegments: {
 ### 1. When to Use "Unknown"
 
 Use `"unknown"` status when:
+
 - Documentation is unclear or contradictory
 - Feature exists but details are uncertain
 - Pricing/availability information cannot be confirmed
@@ -71,12 +74,14 @@ Use `"unknown"` status when:
 ### 2. Adding References
 
 **DO:**
+
 - ✅ Link to official documentation pages
 - ✅ Link to pricing pages for pricing features
 - ✅ Link to feature-specific docs when available
 - ✅ Use the most specific URL possible
 
 **DON'T:**
+
 - ❌ Link to blog posts (use official docs)
 - ❌ Link to homepage (too general)
 - ❌ Link to third-party sites (use official sources)
@@ -84,27 +89,29 @@ Use `"unknown"` status when:
 ### 3. Reference URL Guidelines
 
 **Good Examples:**
+
 ```tsx
 // Specific feature documentation
-reference: "https://launchdarkly.com/docs/home/flags/boolean"
+reference: "https://launchdarkly.com/docs/home/flags/boolean";
 
 // Pricing page for pricing features
-reference: "https://mixpanel.com/pricing"
+reference: "https://mixpanel.com/pricing";
 
 // API reference for technical features
-reference: "https://posthog.com/docs/api/feature-flags"
+reference: "https://posthog.com/docs/api/feature-flags";
 ```
 
 **Bad Examples:**
+
 ```tsx
 // Too general
-reference: "https://example.com"
+reference: "https://example.com";
 
 // Blog post (unstable)
-reference: "https://example.com/blog/new-feature"
+reference: "https://example.com/blog/new-feature";
 
 // Third-party site
-reference: "https://reddit.com/r/featureflags"
+reference: "https://reddit.com/r/featureflags";
 ```
 
 ## Implementation Checklist
@@ -137,20 +144,20 @@ When updating provider information:
       details: "Full boolean flag support",
       reference: "https://example.com/docs/flags/boolean"
     },
-    
+
     // Partially supported with reference
     geoTargeting: {
       status: "partial",
       details: "Via custom attributes only",
       reference: "https://example.com/docs/targeting#geo"
     },
-    
+
     // Not available (no reference needed)
     aiRecommendations: {
       status: "none",
       details: "AI features not available"
     },
-    
+
     // Uncertain - marked as unknown
     scheduledRollouts: {
       status: "unknown",
@@ -172,16 +179,19 @@ When references are added:
 ## Migration Strategy
 
 ### Phase 1: Add Unknown Status
+
 - Update type definitions ✅
 - Update UI components ✅
 - Update comparison tables ✅
 
 ### Phase 2: Mark Uncertain Features
+
 - Review all providers
 - Mark unverified features as "unknown"
 - Add references where possible
 
 ### Phase 3: Add References
+
 - Add references to all verified features
 - Prioritize high-impact features
 - Focus on pricing and core features first
@@ -198,6 +208,7 @@ unknown → ⚪ Gray   (Uncertain/unverified) - slightly faded
 ## Questions?
 
 When uncertain about a feature:
+
 1. Check official documentation
 2. If unclear → use `"unknown"` status
 3. Add reference to best available docs
