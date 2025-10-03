@@ -1156,9 +1156,9 @@ function Home() {
 					return <div className="font-bold text-md py-2">{featureName}</div>;
 				}
 
-				// Regular feature row
+				// Regular feature row with left indent
 				return (
-					<div className="font-medium text-sm text-muted-foreground">
+					<div className="font-medium text-sm text-muted-foreground pl-4">
 						{featureName}
 					</div>
 				);
