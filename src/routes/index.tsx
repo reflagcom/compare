@@ -1,5 +1,11 @@
 "use client";
 
+import {
+	CheckCircledIcon,
+	ChevronRightIcon,
+	CrossCircledIcon,
+	ExclamationTriangleIcon,
+} from "@radix-ui/react-icons";
 import { createFileRoute } from "@tanstack/react-router";
 import {
 	createColumnHelper,
@@ -8,6 +14,7 @@ import {
 	useReactTable,
 } from "@tanstack/react-table";
 import type * as React from "react";
+import { useState } from "react";
 import {
 	Table,
 	TableBody,
@@ -186,95 +193,151 @@ export const Route = createFileRoute("/")({
 	component: Home,
 });
 
+// Status icon types
+type Status = "strong" | "partial" | "none";
+
+type FeatureValue = {
+	status: Status;
+	details: string;
+};
+
 // Provider data organized by provider name
-const providers = {
+const providers: Record<string, Record<string, FeatureValue>> = {
 	Clerk: {
-		freeTier: "Yes - 10k MAU",
-		frontendComponents: "React, Next.js, Remix, Astro, Vue",
-		openSource: "No",
-		oAuth: "Google, GitHub, Microsoft, Apple, Discord, X",
-		mfa: "SMS, TOTP, Backup codes",
-		selfHosted: "No",
-		paidPricing: "$0.02/MAU after 10k",
-		sessionManagement: "Yes",
-		rbac: "Yes (Pro plan)",
+		freeTier: { status: "strong", details: "Yes - 10k MAU" },
+		frontendComponents: {
+			status: "strong",
+			details: "React, Next.js, Remix, Astro, Vue",
+		},
+		openSource: { status: "none", details: "No" },
+		oAuth: {
+			status: "strong",
+			details: "Google, GitHub, Microsoft, Apple, Discord, X",
+		},
+		mfa: { status: "strong", details: "SMS, TOTP, Backup codes" },
+		selfHosted: { status: "none", details: "No" },
+		paidPricing: { status: "strong", details: "$0.02/MAU after 10k" },
+		sessionManagement: { status: "strong", details: "Yes" },
+		rbac: { status: "partial", details: "Yes (Pro plan)" },
 	},
 	Auth0: {
-		freeTier: "Yes - 7.5k MAU",
-		frontendComponents: "React, Angular, Vue, Native SDKs",
-		openSource: "No",
-		oAuth: "Google, GitHub, Facebook, Twitter, LinkedIn, Apple",
-		mfa: "SMS, TOTP, Email, Push",
-		selfHosted: "No",
-		paidPricing: "Starts at $35/month",
-		sessionManagement: "Yes",
-		rbac: "Yes",
+		freeTier: { status: "strong", details: "Yes - 7.5k MAU" },
+		frontendComponents: {
+			status: "strong",
+			details: "React, Angular, Vue, Native SDKs",
+		},
+		openSource: { status: "none", details: "No" },
+		oAuth: {
+			status: "strong",
+			details: "Google, GitHub, Facebook, Twitter, LinkedIn, Apple",
+		},
+		mfa: { status: "strong", details: "SMS, TOTP, Email, Push" },
+		selfHosted: { status: "none", details: "No" },
+		paidPricing: { status: "strong", details: "Starts at $35/month" },
+		sessionManagement: { status: "strong", details: "Yes" },
+		rbac: { status: "strong", details: "Yes" },
 	},
 	"Supabase Auth": {
-		freeTier: "Yes - 50k MAU",
-		frontendComponents: "React, Vue, Svelte, SolidJS",
-		openSource: "Yes",
-		oAuth: "Google, GitHub, GitLab, Bitbucket, Azure, Discord",
-		mfa: "TOTP",
-		selfHosted: "Yes",
-		paidPricing: "$0.00325/MAU after 100k",
-		sessionManagement: "Yes",
-		rbac: "Yes (Row Level Security)",
+		freeTier: { status: "strong", details: "Yes - 50k MAU" },
+		frontendComponents: {
+			status: "strong",
+			details: "React, Vue, Svelte, SolidJS",
+		},
+		openSource: { status: "strong", details: "Yes" },
+		oAuth: {
+			status: "strong",
+			details: "Google, GitHub, GitLab, Bitbucket, Azure, Discord",
+		},
+		mfa: { status: "partial", details: "TOTP" },
+		selfHosted: { status: "strong", details: "Yes" },
+		paidPricing: { status: "strong", details: "$0.00325/MAU after 100k" },
+		sessionManagement: { status: "strong", details: "Yes" },
+		rbac: { status: "strong", details: "Yes (Row Level Security)" },
 	},
 	"Auth.js (NextAuth)": {
-		freeTier: "Yes - Unlimited (self-hosted)",
-		frontendComponents: "Next.js, SvelteKit, Express, Qwik",
-		openSource: "Yes",
-		oAuth: "Google, GitHub, Facebook, Twitter, 80+ providers",
-		mfa: "Via custom implementation",
-		selfHosted: "Yes (required)",
-		paidPricing: "Free (open source)",
-		sessionManagement: "Yes",
-		rbac: "Custom implementation",
+		freeTier: { status: "strong", details: "Yes - Unlimited (self-hosted)" },
+		frontendComponents: {
+			status: "strong",
+			details: "Next.js, SvelteKit, Express, Qwik",
+		},
+		openSource: { status: "strong", details: "Yes" },
+		oAuth: {
+			status: "strong",
+			details: "Google, GitHub, Facebook, Twitter, 80+ providers",
+		},
+		mfa: { status: "partial", details: "Via custom implementation" },
+		selfHosted: { status: "strong", details: "Yes (required)" },
+		paidPricing: { status: "strong", details: "Free (open source)" },
+		sessionManagement: { status: "strong", details: "Yes" },
+		rbac: { status: "partial", details: "Custom implementation" },
 	},
 	"Firebase Auth": {
-		freeTier: "Yes - Unlimited",
-		frontendComponents: "React, Angular, Vue, Flutter, iOS, Android",
-		openSource: "No",
-		oAuth: "Google, Facebook, Twitter, GitHub, Microsoft, Apple",
-		mfa: "SMS, TOTP",
-		selfHosted: "No",
-		paidPricing: "Free (pay for usage)",
-		sessionManagement: "Yes",
-		rbac: "Via Firebase Security Rules",
+		freeTier: { status: "strong", details: "Yes - Unlimited" },
+		frontendComponents: {
+			status: "strong",
+			details: "React, Angular, Vue, Flutter, iOS, Android",
+		},
+		openSource: { status: "none", details: "No" },
+		oAuth: {
+			status: "strong",
+			details: "Google, Facebook, Twitter, GitHub, Microsoft, Apple",
+		},
+		mfa: { status: "strong", details: "SMS, TOTP" },
+		selfHosted: { status: "none", details: "No" },
+		paidPricing: { status: "strong", details: "Free (pay for usage)" },
+		sessionManagement: { status: "strong", details: "Yes" },
+		rbac: { status: "partial", details: "Via Firebase Security Rules" },
 	},
 	Lucia: {
-		freeTier: "Yes - Unlimited (library)",
-		frontendComponents: "Framework agnostic",
-		openSource: "Yes",
-		oAuth: "Via Arctic (50+ providers)",
-		mfa: "Custom implementation",
-		selfHosted: "Yes (library)",
-		paidPricing: "Free (open source)",
-		sessionManagement: "Yes (built-in)",
-		rbac: "Custom implementation",
+		freeTier: { status: "strong", details: "Yes - Unlimited (library)" },
+		frontendComponents: {
+			status: "strong",
+			details: "Framework agnostic",
+		},
+		openSource: { status: "strong", details: "Yes" },
+		oAuth: {
+			status: "strong",
+			details: "Via Arctic (50+ providers)",
+		},
+		mfa: { status: "partial", details: "Custom implementation" },
+		selfHosted: { status: "strong", details: "Yes (library)" },
+		paidPricing: { status: "strong", details: "Free (open source)" },
+		sessionManagement: { status: "strong", details: "Yes (built-in)" },
+		rbac: { status: "partial", details: "Custom implementation" },
 	},
 	WorkOS: {
-		freeTier: "Yes - 1M MAU",
-		frontendComponents: "React, Next.js, Vanilla JS",
-		openSource: "No",
-		oAuth: "Google, Microsoft, GitHub + Enterprise SSO/SAML",
-		mfa: "SMS, TOTP",
-		selfHosted: "No",
-		paidPricing: "$2,500/1M MAU after 1M",
-		sessionManagement: "Yes",
-		rbac: "Yes",
+		freeTier: { status: "strong", details: "Yes - 1M MAU" },
+		frontendComponents: {
+			status: "strong",
+			details: "React, Next.js, Vanilla JS",
+		},
+		openSource: { status: "none", details: "No" },
+		oAuth: {
+			status: "strong",
+			details: "Google, Microsoft, GitHub + Enterprise SSO/SAML",
+		},
+		mfa: { status: "strong", details: "SMS, TOTP" },
+		selfHosted: { status: "none", details: "No" },
+		paidPricing: { status: "strong", details: "$2,500/1M MAU after 1M" },
+		sessionManagement: { status: "strong", details: "Yes" },
+		rbac: { status: "strong", details: "Yes" },
 	},
 	Keycloak: {
-		freeTier: "Yes - Unlimited (self-hosted)",
-		frontendComponents: "JavaScript, Java, Node.js adapters",
-		openSource: "Yes",
-		oAuth: "Google, GitHub, Facebook, SAML, LDAP",
-		mfa: "OTP, WebAuthn",
-		selfHosted: "Yes (required)",
-		paidPricing: "Free (open source)",
-		sessionManagement: "Yes",
-		rbac: "Yes (built-in)",
+		freeTier: { status: "strong", details: "Yes - Unlimited (self-hosted)" },
+		frontendComponents: {
+			status: "strong",
+			details: "JavaScript, Java, Node.js adapters",
+		},
+		openSource: { status: "strong", details: "Yes" },
+		oAuth: {
+			status: "strong",
+			details: "Google, GitHub, Facebook, SAML, LDAP",
+		},
+		mfa: { status: "strong", details: "OTP, WebAuthn" },
+		selfHosted: { status: "strong", details: "Yes (required)" },
+		paidPricing: { status: "strong", details: "Free (open source)" },
+		sessionManagement: { status: "strong", details: "Yes" },
+		rbac: { status: "strong", details: "Yes (built-in)" },
 	},
 };
 
@@ -291,10 +354,46 @@ const featureLabels: Record<string, string> = {
 	sessionManagement: "Sessions",
 };
 
+// Status Icon Component
+function StatusIcon({ status }: { status: Status }) {
+	switch (status) {
+		case "strong":
+			return <CheckCircledIcon className="w-5 h-5 text-green-500" />;
+		case "partial":
+			return <ExclamationTriangleIcon className="w-5 h-5 text-yellow-500" />;
+		case "none":
+			return <CrossCircledIcon className="w-5 h-5 text-red-500" />;
+	}
+}
+
+// Expandable Cell Component
+function FeatureCell({
+	value,
+	isRowExpanded,
+}: {
+	value: FeatureValue;
+	isRowExpanded: boolean;
+}) {
+	return (
+		<div
+			className={`flex ${isRowExpanded ? "items-start" : "items-center"} justify-center py-2`}
+		>
+			<div className="flex items-center flex-col gap-2 justify-center">
+				<StatusIcon status={value.status} />
+				{isRowExpanded && (
+					<div className="text-xs text-left whitespace-normal flex-1">
+						{value.details}
+					</div>
+				)}
+			</div>
+		</div>
+	);
+}
+
 // Transpose data: each row is a feature, each column is a provider
 type FeatureRow = {
 	feature: string;
-	[key: string]: string;
+	[key: string]: string | FeatureValue;
 };
 
 const providerNames = Object.keys(providers);
@@ -317,36 +416,84 @@ const data: FeatureRow[] = featureKeys.map((featureKey) => {
 
 const columnHelper = createColumnHelper<FeatureRow>();
 
-// Create columns: first column for feature names, then one column per provider
-const columns = [
-	columnHelper.accessor("feature", {
-		header: "Feature",
-		cell: ({ getValue }) => <div className="font-semibold">{getValue()}</div>,
-		meta: {
-			headerClassName:
-				"sticky left-0 z-10 bg-background after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20",
-			cellClassName:
-				"sticky left-0 z-10 bg-background after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20",
-		},
-	}),
-	...providerNames.map((providerName) =>
-		columnHelper.accessor(providerName, {
-			header: () => (
-				<div className="flex flex-col items-center gap-3 py-6">
-					<ProviderLogo name={providerName} />
-					<span className="text-lg font-bold text-center">{providerName}</span>
-				</div>
-			),
-			cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
+function Home() {
+	const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+
+	const toggleRow = (featureName: string) => {
+		setExpandedRows((prev) => {
+			const next = new Set(prev);
+			if (next.has(featureName)) {
+				next.delete(featureName);
+			} else {
+				next.add(featureName);
+			}
+			return next;
+		});
+	};
+
+	// Create columns: first column for feature names, then one column per provider
+	const columns = [
+		columnHelper.accessor("feature", {
+			header: "Feature",
+			cell: ({ getValue }) => {
+				const featureName = getValue();
+				const isExpanded = expandedRows.has(featureName);
+				return (
+					<div className="flex items-center gap-2">
+						<button
+							type="button"
+							onClick={() => toggleRow(featureName)}
+							className="hover:bg-muted/50 p-1 rounded transition-colors"
+							aria-label={isExpanded ? "Collapse row" : "Expand row"}
+						>
+							<ChevronRightIcon
+								className={`w-4 h-4 transition-transform ${isExpanded ? "rotate-90" : ""}`}
+							/>
+						</button>
+						<div className="font-semibold">{featureName}</div>
+					</div>
+				);
+			},
 			meta: {
-				headerClassName: "w-48 min-w-48 max-w-48",
-				cellClassName: "w-48 min-w-48 max-w-48",
+				headerClassName:
+					"sticky left-0 z-10 bg-background after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20",
+				cellClassName:
+					"sticky left-0 z-10 bg-background after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20",
 			},
 		}),
-	),
-];
+		...providerNames.map((providerName) =>
+			columnHelper.accessor((row) => row[providerName], {
+				id: providerName,
+				header: () => (
+					<div className="flex flex-col items-center gap-3 py-6">
+						<ProviderLogo name={providerName} />
+						<span className="text-lg font-bold text-center">
+							{providerName}
+						</span>
+					</div>
+				),
+				cell: ({ getValue, row }) => {
+					const value = getValue();
+					const isRowExpanded = expandedRows.has(
+						row.original.feature as string,
+					);
+					if (!value) {
+						return <div className="text-xs text-muted-foreground">N/A</div>;
+					}
+					return typeof value === "string" ? (
+						<div className="text-sm">{value}</div>
+					) : (
+						<FeatureCell value={value} isRowExpanded={isRowExpanded} />
+					);
+				},
+				meta: {
+					headerClassName: "w-48 min-w-48 max-w-48",
+					cellClassName: "w-48 min-w-48 max-w-48",
+				},
+			}),
+		),
+	];
 
-function Home() {
 	const table = useReactTable({
 		data,
 		columns,
@@ -384,23 +531,31 @@ function Home() {
 					</TableHeader>
 					<TableBody>
 						{table.getRowModel().rows?.length ? (
-							table.getRowModel().rows.map((row) => (
-								<TableRow key={row.id}>
-									{row.getVisibleCells().map((cell) => {
-										const meta = cell.column.columnDef.meta as
-											| { cellClassName?: string }
-											| undefined;
-										return (
-											<TableCell key={cell.id} className={meta?.cellClassName}>
-												{flexRender(
-													cell.column.columnDef.cell,
-													cell.getContext(),
-												)}
-											</TableCell>
-										);
-									})}
-								</TableRow>
-							))
+							table.getRowModel().rows.map((row) => {
+								const isRowExpanded = expandedRows.has(
+									row.original.feature as string,
+								);
+								return (
+									<TableRow key={row.id}>
+										{row.getVisibleCells().map((cell) => {
+											const meta = cell.column.columnDef.meta as
+												| { cellClassName?: string }
+												| undefined;
+											return (
+												<TableCell
+													key={cell.id}
+													className={`${meta?.cellClassName || ""} ${isRowExpanded ? "!whitespace-normal align-top" : ""}`}
+												>
+													{flexRender(
+														cell.column.columnDef.cell,
+														cell.getContext(),
+													)}
+												</TableCell>
+											);
+										})}
+									</TableRow>
+								);
+							})
 						) : (
 							<TableRow>
 								<TableCell
