@@ -1,0 +1,112 @@
+import type { Provider } from "../../types/comparison";
+
+function FirebaseLogo() {
+	return (
+		<svg
+			className="w-5 h-5"
+			viewBox="0 0 24 24"
+			fill="#FFCA28"
+			aria-label="Firebase logo"
+		>
+			<title>Firebase</title>
+			<path d="M19.455 8.369c-.538-.748-1.778-2.285-3.681-4.569-.826-.991-1.535-1.832-1.884-2.245a146 146 0 0 0-.488-.576l-.207-.245-.113-.133-.022-.032-.01-.005L12.57 0l-.609.488c-1.555 1.246-2.828 2.851-3.681 4.64-.523 1.064-.864 2.105-1.043 3.176-.047.241-.088.489-.121.738-.209-.017-.421-.028-.632-.033-.018-.001-.035-.002-.059-.003a7.46 7.46 0 0 0-2.28.274l-.317.089-.163.286c-.765 1.342-1.198 2.869-1.252 4.416-.07 2.01.477 3.954 1.583 5.625 1.082 1.633 2.61 2.882 4.42 3.611l.236.095.071.025.003-.001a9.59 9.59 0 0 0 2.941.568q.171.006.342.006c1.273 0 2.513-.249 3.69-.742l.008.004.313-.145a9.63 9.63 0 0 0 3.927-3.335c1.01-1.49 1.577-3.234 1.641-5.042.075-2.161-.643-4.304-2.133-6.371m-7.083 6.695c.328 1.244.264 2.44-.191 3.558-1.135-1.12-1.967-2.352-2.475-3.665-.543-1.404-.87-2.74-.974-3.975.48.157.922.366 1.315.622 1.132.737 1.914 1.902 2.325 3.461zm.207 6.022c.482.368.99.712 1.513 1.028-.771.21-1.565.302-2.369.273a8 8 0 0 1-.373-.022c.458-.394.869-.823 1.228-1.279zm1.347-6.431c-.516-1.957-1.527-3.437-3.002-4.398-.647-.421-1.385-.741-2.194-.95.011-.134.026-.268.043-.4.014-.113.03-.216.046-.313.133-.689.332-1.37.589-2.025.099-.25.206-.499.321-.74l.004-.008c.177-.358.376-.719.61-1.105l.092-.152-.003-.001c.544-.851 1.197-1.627 1.942-2.311l.288.341c.672.796 1.304 1.548 1.878 2.237 1.291 1.549 2.966 3.583 3.612 4.48 1.277 1.771 1.893 3.579 1.83 5.375-.049 1.395-.461 2.755-1.195 3.933-.694 1.116-1.661 2.05-2.8 2.708-.636-.318-1.559-.839-2.539-1.599.79-1.575.952-3.28.479-5.072zm-2.575 5.397c-.725.939-1.587 1.55-2.09 1.856-.081-.029-.163-.06-.243-.093l-.065-.026c-1.49-.616-2.747-1.656-3.635-3.01-.907-1.384-1.356-2.993-1.298-4.653.041-1.19.338-2.327.882-3.379.316-.07.638-.114.96-.131l.084-.002c.162-.003.324-.003.478 0 .227.011.454.035.677.07.073 1.513.445 3.145 1.105 4.852.637 1.644 1.694 3.162 3.144 4.515z" />
+		</svg>
+	);
+}
+
+export const firebase: Provider = {
+	name: "Firebase Auth",
+	logo: <FirebaseLogo />,
+	website: "https://firebase.google.com/products/auth",
+	tagline: {
+		status: "strong",
+		details:
+			"Simple, multi-platform sign-in with backend services and ready-made UI",
+	},
+	features: {
+		emailPassword: {
+			status: "strong",
+			details: "Email + password with verification links",
+		},
+		passwordless: {
+			status: "strong",
+			details: "Email links & anonymous auth",
+		},
+		socialLogins: {
+			status: "strong",
+			details: "Google, Facebook, Apple, Microsoft, GitHub, Twitter",
+		},
+		enterpriseSSO: {
+			status: "strong",
+			details: "SAML & OIDC (Identity Platform)",
+		},
+		passkeys: {
+			status: "partial",
+			details: "Via Firebase Extensions or custom",
+		},
+		mfa: { status: "strong", details: "SMS, TOTP (Google Authenticator)" },
+		rbac: { status: "partial", details: "Custom claims + Security Rules" },
+		userProfiles: {
+			status: "partial",
+			details: "Store in Firestore with custom logic",
+		},
+		organizations: {
+			status: "partial",
+			details: "Build with Firestore & Security Rules",
+		},
+		frontendSDKs: {
+			status: "strong",
+			details: "Web, iOS, Android, Flutter, Unity, C++",
+		},
+		prebuiltUI: {
+			status: "strong",
+			details: "FirebaseUI for Web, iOS, Android",
+		},
+		documentation: {
+			status: "strong",
+			details: "Excellent docs with video courses",
+		},
+		apiApproach: {
+			status: "strong",
+			details: "Client SDKs + Admin SDK for backend",
+		},
+		sessionManagement: {
+			status: "strong",
+			details: "ID tokens with automatic refresh",
+		},
+		jwtSupport: { status: "strong", details: "Firebase ID tokens (JWTs)" },
+		compliance: {
+			status: "strong",
+			details: "SOC 2, SOC 3, ISO 27001, GDPR",
+		},
+		rateLimiting: {
+			status: "strong",
+			details: "App Check + Cloud Armor integration",
+		},
+		freeTier: {
+			status: "strong",
+			details: "Unlimited auth users (no MAU limits)",
+		},
+		paidPricing: {
+			status: "partial",
+			details: "Free auth; phone SMS $0.06/verification",
+		},
+		openSource: {
+			status: "none",
+			details: "Proprietary (Firebase Emulators for dev)",
+		},
+		selfHosted: { status: "none", details: "Cloud-only Google service" },
+		oauthProviders: {
+			status: "strong",
+			details: "6+ social + custom OAuth/SAML",
+		},
+		webhooks: {
+			status: "partial",
+			details: "Cloud Functions triggers for auth events",
+		},
+		thirdPartyIntegrations: {
+			status: "strong",
+			details: "Google ecosystem + Firebase Extensions",
+		},
+	},
+};
