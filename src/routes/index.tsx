@@ -29,6 +29,8 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 
+const DATA_UPDATED_AT = "2025-10-02";
+
 // Provider Logo Components
 const ProviderLogo = ({ name }: { name: string }) => {
 	const logos: Record<string, React.ReactNode> = {
@@ -1243,9 +1245,12 @@ function Home() {
 					return null;
 				},
 				meta: {
-					headerClassName:
-						"sticky top-0 z-20 bg-background w-48 min-w-48 max-w-48",
-					cellClassName: "w-48 min-w-48 max-w-48",
+					headerClassName: showExpandedContent
+						? "sticky top-0 z-20 bg-background w-64 min-w-64 max-w-64"
+						: "sticky top-0 z-20 bg-background w-40 min-w-40 max-w-40",
+					cellClassName: showExpandedContent
+						? "w-64 min-w-64 max-w-64"
+						: "w-40 min-w-40 max-w-40",
 				},
 			}),
 		),
@@ -1256,6 +1261,10 @@ function Home() {
 		columns,
 		getCoreRowModel: getCoreRowModel(),
 	});
+
+	const lastUpdatedAtDays = Math.floor(
+		(Date.now() - new Date(DATA_UPDATED_AT).getTime()) / (1000 * 60 * 60 * 24),
+	);
 
 	return (
 		<div className="w-full h-screen flex flex-col">
@@ -1372,31 +1381,37 @@ function Home() {
 				</table>
 			</div>
 			<footer className="border-t bg-background p-3 text-xs text-muted-foreground flex-shrink-0">
-				<div className="flex items-center gap-2">
-					<span>Made by the team at</span>
-					<a
-						href="https://reflag.com"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="font-semibold hover:text-foreground transition-colors flex items-center gap-1.5"
-					>
-						<svg
-							width="12"
-							height="12"
-							viewBox="0 0 128 128"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							role="img"
-							aria-label="Reflag logo"
+				<div className="flex items-center justify-between">
+					<div className="flex items-center gap-2">
+						<span>Made by the team at</span>
+						<a
+							href="https://reflag.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="font-semibold hover:text-foreground transition-colors flex items-center gap-1.5"
 						>
-							<title>Reflag logo</title>
-							<path
-								d="M117.333 0C123.224 0 128 4.77563 128 10.6667V117.333C128 123.224 123.224 128 117.333 128H10.6667C4.77563 128 1.71804e-07 123.224 0 117.333V10.6667C0 4.77563 4.77563 1.71801e-07 10.6667 0H117.333ZM10.6667 10.6667V117.333L117.333 10.6667H10.6667Z"
-								fill="currentColor"
-							/>
-						</svg>
-						Reflag
-					</a>
+							<svg
+								width="12"
+								height="12"
+								viewBox="0 0 128 128"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								role="img"
+								aria-label="Reflag logo"
+							>
+								<title>Reflag logo</title>
+								<path
+									d="M117.333 0C123.224 0 128 4.77563 128 10.6667V117.333C128 123.224 123.224 128 117.333 128H10.6667C4.77563 128 1.71804e-07 123.224 0 117.333V10.6667C0 4.77563 4.77563 1.71801e-07 10.6667 0H117.333ZM10.6667 10.6667V117.333L117.333 10.6667H10.6667Z"
+									fill="currentColor"
+								/>
+							</svg>
+							Reflag
+						</a>
+					</div>
+					<div className="text-muted-foreground/70">
+						Data last updated {lastUpdatedAtDays} day
+						{lastUpdatedAtDays > 1 ? "s" : ""} ago
+					</div>
 				</div>
 			</footer>
 		</div>
