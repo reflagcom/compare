@@ -1,11 +1,5 @@
 "use client";
 
-import {
-	CheckCircledIcon,
-	ChevronRightIcon,
-	CrossCircledIcon,
-	ExclamationTriangleIcon,
-} from "@radix-ui/react-icons";
 import { createFileRoute } from "@tanstack/react-router";
 import {
 	createColumnHelper,
@@ -15,6 +9,10 @@ import {
 } from "@tanstack/react-table";
 import type * as React from "react";
 import { useState } from "react";
+import RiCheckboxCircleFill from "remixicon-react/CheckboxCircleFillIcon";
+import RiCloseCircleFill from "remixicon-react/CloseLineIcon";
+import RiErrorWarningLine from "remixicon-react/ErrorWarningLineIcon";
+import { Button } from "@/components/ui/button";
 import {
 	Table,
 	TableBody,
@@ -204,7 +202,7 @@ type FeatureValue = {
 // Provider data organized by provider name
 const providers: Record<string, Record<string, FeatureValue>> = {
 	Clerk: {
-		freeTier: { status: "strong", details: "Yes - 10k MAU" },
+		freeTier: { status: "strong", details: "10k MAU" },
 		frontendComponents: {
 			status: "strong",
 			details: "React, Next.js, Remix, Astro, Vue",
@@ -221,7 +219,7 @@ const providers: Record<string, Record<string, FeatureValue>> = {
 		rbac: { status: "partial", details: "Yes (Pro plan)" },
 	},
 	Auth0: {
-		freeTier: { status: "strong", details: "Yes - 7.5k MAU" },
+		freeTier: { status: "strong", details: "7.5k MAU" },
 		frontendComponents: {
 			status: "strong",
 			details: "React, Angular, Vue, Native SDKs",
@@ -238,7 +236,7 @@ const providers: Record<string, Record<string, FeatureValue>> = {
 		rbac: { status: "strong", details: "Yes" },
 	},
 	"Supabase Auth": {
-		freeTier: { status: "strong", details: "Yes - 50k MAU" },
+		freeTier: { status: "strong", details: "50k MAU" },
 		frontendComponents: {
 			status: "strong",
 			details: "React, Vue, Svelte, SolidJS",
@@ -255,7 +253,7 @@ const providers: Record<string, Record<string, FeatureValue>> = {
 		rbac: { status: "strong", details: "Yes (Row Level Security)" },
 	},
 	"Auth.js (NextAuth)": {
-		freeTier: { status: "strong", details: "Yes - Unlimited (self-hosted)" },
+		freeTier: { status: "strong", details: "Unlimited (self-hosted)" },
 		frontendComponents: {
 			status: "strong",
 			details: "Next.js, SvelteKit, Express, Qwik",
@@ -272,7 +270,7 @@ const providers: Record<string, Record<string, FeatureValue>> = {
 		rbac: { status: "partial", details: "Custom implementation" },
 	},
 	"Firebase Auth": {
-		freeTier: { status: "strong", details: "Yes - Unlimited" },
+		freeTier: { status: "strong", details: "Unlimited" },
 		frontendComponents: {
 			status: "strong",
 			details: "React, Angular, Vue, Flutter, iOS, Android",
@@ -289,7 +287,7 @@ const providers: Record<string, Record<string, FeatureValue>> = {
 		rbac: { status: "partial", details: "Via Firebase Security Rules" },
 	},
 	Lucia: {
-		freeTier: { status: "strong", details: "Yes - Unlimited (library)" },
+		freeTier: { status: "strong", details: "Unlimited (library)" },
 		frontendComponents: {
 			status: "strong",
 			details: "Framework agnostic",
@@ -306,7 +304,7 @@ const providers: Record<string, Record<string, FeatureValue>> = {
 		rbac: { status: "partial", details: "Custom implementation" },
 	},
 	WorkOS: {
-		freeTier: { status: "strong", details: "Yes - 1M MAU" },
+		freeTier: { status: "strong", details: "1M MAU" },
 		frontendComponents: {
 			status: "strong",
 			details: "React, Next.js, Vanilla JS",
@@ -323,7 +321,7 @@ const providers: Record<string, Record<string, FeatureValue>> = {
 		rbac: { status: "strong", details: "Yes" },
 	},
 	Keycloak: {
-		freeTier: { status: "strong", details: "Yes - Unlimited (self-hosted)" },
+		freeTier: { status: "strong", details: "Unlimited (self-hosted)" },
 		frontendComponents: {
 			status: "strong",
 			details: "JavaScript, Java, Node.js adapters",
@@ -341,28 +339,51 @@ const providers: Record<string, Record<string, FeatureValue>> = {
 	},
 };
 
-// Feature labels
-const featureLabels: Record<string, string> = {
-	freeTier: "Free Tier",
-	paidPricing: "Paid Pricing",
-	openSource: "Open Source",
-	selfHosted: "Self-Hosted",
-	mfa: "MFA",
-	rbac: "RBAC",
-	frontendComponents: "Frontend SDKs",
-	oAuth: "OAuth Providers",
-	sessionManagement: "Sessions",
+// Feature categories and labels
+const featureCategories: Record<
+	string,
+	{ label: string; features: Record<string, string> }
+> = {
+	pricing: {
+		label: "Pricing",
+		features: {
+			freeTier: "Free Tier",
+			paidPricing: "Paid Pricing",
+		},
+	},
+	deployment: {
+		label: "Deployment",
+		features: {
+			openSource: "Open Source",
+			selfHosted: "Self-Hosted",
+		},
+	},
+	security: {
+		label: "Security & Access",
+		features: {
+			mfa: "MFA",
+			rbac: "RBAC",
+			sessionManagement: "Sessions",
+		},
+	},
+	integration: {
+		label: "Integration",
+		features: {
+			frontendComponents: "Frontend SDKs",
+			oAuth: "OAuth Providers",
+		},
+	},
 };
 
 // Status Icon Component
 function StatusIcon({ status }: { status: Status }) {
 	switch (status) {
 		case "strong":
-			return <CheckCircledIcon className="w-5 h-5 text-green-500" />;
+			return <RiCheckboxCircleFill className="w-5 h-5 text-emerald-600" />;
 		case "partial":
-			return <ExclamationTriangleIcon className="w-5 h-5 text-yellow-500" />;
+			return <RiErrorWarningLine className="w-5 h-5 text-amber-600" />;
 		case "none":
-			return <CrossCircledIcon className="w-5 h-5 text-red-500" />;
+			return <RiCloseCircleFill className="w-5 h-5 text-gray-500" />;
 	}
 }
 
@@ -374,18 +395,26 @@ function FeatureCell({
 	value: FeatureValue;
 	isRowExpanded: boolean;
 }) {
+	// Determine text opacity based on status
+	const textClass =
+		value.status === "strong"
+			? "text-foreground"
+			: value.status === "none"
+				? "text-muted-foreground"
+				: "text-muted-foreground";
+
 	return (
 		<div
-			className={`flex ${isRowExpanded ? "items-start" : "items-center"} justify-center py-2`}
+			className={`flex items-start flex-row gap-2 ${isRowExpanded ? "justify-start" : "justify-center"} py-1`}
 		>
-			<div className="flex items-center flex-col gap-2 justify-center">
-				<StatusIcon status={value.status} />
-				{isRowExpanded && (
-					<div className="text-xs text-left whitespace-normal flex-1">
-						{value.details}
-					</div>
-				)}
-			</div>
+			<StatusIcon status={value.status} />
+			{isRowExpanded && (
+				<div
+					className={`text-xs text-left whitespace-normal flex-1 ${textClass}`}
+				>
+					{value.details}
+				</div>
+			)}
 		</div>
 	);
 }
@@ -393,64 +422,62 @@ function FeatureCell({
 // Transpose data: each row is a feature, each column is a provider
 type FeatureRow = {
 	feature: string;
-	[key: string]: string | FeatureValue;
+	isCategory?: boolean;
+	[key: string]: string | FeatureValue | boolean | undefined;
 };
 
 const providerNames = Object.keys(providers);
-const featureKeys = Object.keys(featureLabels);
 
-const data: FeatureRow[] = featureKeys.map((featureKey) => {
-	const row: FeatureRow = {
-		feature: featureLabels[featureKey],
-	};
+// Build data with category headers
+const data: FeatureRow[] = [];
 
-	providerNames.forEach((providerName) => {
-		row[providerName] =
-			providers[providerName as keyof typeof providers][
-				featureKey as keyof typeof providers.Clerk
-			];
+Object.entries(featureCategories).forEach(([_categoryKey, category]) => {
+	// Add category header row
+	data.push({
+		feature: category.label,
+		isCategory: true,
 	});
 
-	return row;
+	// Add feature rows for this category
+	Object.entries(category.features).forEach(([featureKey, featureLabel]) => {
+		const row: FeatureRow = {
+			feature: featureLabel,
+			isCategory: false,
+		};
+
+		providerNames.forEach((providerName) => {
+			row[providerName] =
+				providers[providerName as keyof typeof providers][
+					featureKey as keyof typeof providers.Clerk
+				];
+		});
+
+		data.push(row);
+	});
 });
 
 const columnHelper = createColumnHelper<FeatureRow>();
 
 function Home() {
-	const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
-
-	const toggleRow = (featureName: string) => {
-		setExpandedRows((prev) => {
-			const next = new Set(prev);
-			if (next.has(featureName)) {
-				next.delete(featureName);
-			} else {
-				next.add(featureName);
-			}
-			return next;
-		});
-	};
+	const [showExpandedContent, setShowExpandedContent] = useState(false);
 
 	// Create columns: first column for feature names, then one column per provider
 	const columns = [
 		columnHelper.accessor("feature", {
-			header: "Feature",
-			cell: ({ getValue }) => {
+			header: "",
+			cell: ({ getValue, row }) => {
 				const featureName = getValue();
-				const isExpanded = expandedRows.has(featureName);
+				const isCategory = row.original.isCategory;
+
+				// Category header row
+				if (isCategory) {
+					return <div className="font-bold text-md py-2">{featureName}</div>;
+				}
+
+				// Regular feature row
 				return (
-					<div className="flex items-center gap-2">
-						<button
-							type="button"
-							onClick={() => toggleRow(featureName)}
-							className="hover:bg-muted/50 p-1 rounded transition-colors"
-							aria-label={isExpanded ? "Collapse row" : "Expand row"}
-						>
-							<ChevronRightIcon
-								className={`w-4 h-4 transition-transform ${isExpanded ? "rotate-90" : ""}`}
-							/>
-						</button>
-						<div className="font-semibold">{featureName}</div>
+					<div className="font-medium text-sm text-muted-foreground">
+						{featureName}
 					</div>
 				);
 			},
@@ -465,25 +492,37 @@ function Home() {
 			columnHelper.accessor((row) => row[providerName], {
 				id: providerName,
 				header: () => (
-					<div className="flex flex-col items-center gap-3 py-6">
+					<div className="flex flex-col items-center gap-3 py-4">
 						<ProviderLogo name={providerName} />
-						<span className="text-lg font-bold text-center">
+						<span className="text-md font-bold text-center">
 							{providerName}
 						</span>
 					</div>
 				),
 				cell: ({ getValue, row }) => {
 					const value = getValue();
-					const isRowExpanded = expandedRows.has(
-						row.original.feature as string,
-					);
+					const isCategory = row.original.isCategory;
+
+					// Empty cell for category rows
+					if (isCategory) {
+						return null;
+					}
+
 					if (!value) {
 						return <div className="text-xs text-muted-foreground">N/A</div>;
 					}
-					return typeof value === "string" ? (
-						<div className="text-sm">{value}</div>
-					) : (
-						<FeatureCell value={value} isRowExpanded={isRowExpanded} />
+
+					// Type guard: value is either string or FeatureValue at this point
+					if (typeof value === "string") {
+						return <div className="text-sm">{value}</div>;
+					}
+
+					if (typeof value === "boolean") {
+						return null;
+					}
+
+					return (
+						<FeatureCell value={value} isRowExpanded={showExpandedContent} />
 					);
 				},
 				meta: {
@@ -501,9 +540,17 @@ function Home() {
 	});
 
 	return (
-		<div className="w-full p-8">
-			<h1 className="text-4xl font-bold mb-8">Auth Provider Comparison</h1>
-			<div className="overflow-x-auto rounded-md border">
+		<div className="w-full h-screen flex flex-col">
+			<div className="flex items-center justify-between p-2 border-b-1 flex-shrink-0">
+				<h1 className="text-xl font-bold">Compare auth provider</h1>
+				<Button
+					onClick={() => setShowExpandedContent(!showExpandedContent)}
+					variant={showExpandedContent ? "default" : "outline"}
+				>
+					{showExpandedContent ? "Hide" : "Show"} Details
+				</Button>
+			</div>
+			<div className="overflow-auto flex-1">
 				<Table>
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
@@ -532,11 +579,14 @@ function Home() {
 					<TableBody>
 						{table.getRowModel().rows?.length ? (
 							table.getRowModel().rows.map((row) => {
-								const isRowExpanded = expandedRows.has(
-									row.original.feature as string,
-								);
+								const isCategory = row.original.isCategory;
 								return (
-									<TableRow key={row.id}>
+									<TableRow
+										key={row.id}
+										className={
+											isCategory ? "bg-muted/20 hover:bg-muted/20" : ""
+										}
+									>
 										{row.getVisibleCells().map((cell) => {
 											const meta = cell.column.columnDef.meta as
 												| { cellClassName?: string }
@@ -544,7 +594,7 @@ function Home() {
 											return (
 												<TableCell
 													key={cell.id}
-													className={`${meta?.cellClassName || ""} ${isRowExpanded ? "!whitespace-normal align-top" : ""}`}
+													className={`${meta?.cellClassName || ""} ${showExpandedContent ? "align-top" : ""}`}
 												>
 													{flexRender(
 														cell.column.columnDef.cell,
@@ -569,6 +619,34 @@ function Home() {
 					</TableBody>
 				</Table>
 			</div>
+			<footer className="border-t bg-background p-3 text-sm text-muted-foreground flex-shrink-0">
+				<div className="flex items-center gap-2">
+					<span>Made by</span>
+					<a
+						href="https://reflag.com"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="font-semibold hover:text-foreground transition-colors flex items-center gap-1.5"
+					>
+						<svg
+							width="14"
+							height="14"
+							viewBox="0 0 128 128"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							role="img"
+							aria-label="Reflag logo"
+						>
+							<title>Reflag logo</title>
+							<path
+								d="M117.333 0C123.224 0 128 4.77563 128 10.6667V117.333C128 123.224 123.224 128 117.333 128H10.6667C4.77563 128 1.71804e-07 123.224 0 117.333V10.6667C0 4.77563 4.77563 1.71801e-07 10.6667 0H117.333ZM10.6667 10.6667V117.333L117.333 10.6667H10.6667Z"
+								fill="currentColor"
+							/>
+						</svg>
+						Reflag
+					</a>
+				</div>
+			</footer>
 		</div>
 	);
 }
