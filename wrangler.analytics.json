@@ -1,0 +1,11 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"account_id": "ab74011be140ac31297ff07916e92030",
+	"assets": {
+		"directory": "dist/client"
+	},
+	"compatibility_date": "2025-10-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"main": "dist/server/server.js",
+	"name": "analytics-compare"
+}

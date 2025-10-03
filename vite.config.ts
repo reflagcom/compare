@@ -5,7 +5,13 @@ import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 
+const site = process.env.SITE || "auth";
+
 const config = defineConfig({
+	define: {
+		// Pass SITE environment variable to the client
+		"import.meta.env.VITE_SITE": JSON.stringify(site),
+	},
 	plugins: [
 		// this is the plugin that enables path aliases
 		viteTsConfigPaths({
@@ -13,7 +19,7 @@ const config = defineConfig({
 		}),
 		tanstackStart(),
 		viteReact(),
-		cloudflare(),
+		cloudflare({ configPath: `./wrangler.${site}.json` }),
 		tailwindcss(),
 	],
 });

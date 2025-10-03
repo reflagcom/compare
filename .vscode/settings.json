@@ -35,5 +35,8 @@
 	"editor.defaultFormatter": "biomejs.biome",
 	"[instructions]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	}
 }
