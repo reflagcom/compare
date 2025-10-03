@@ -522,12 +522,13 @@ const providers: Provider[] = [
 				details: "SOC 2, GDPR, HIPAA, FedRAMP",
 			},
 			freeTier: {
-				status: "partial",
-				details: "14-day trial, no free tier",
+				status: "strong",
+				details:
+					"Developer: Free, unlimited seats, 5 service connections, 1K client MAUs",
 			},
 			paidPricing: {
 				status: "strong",
-				details: "Starts $10/seat/mo (Starter), custom Enterprise",
+				details: "Foundation: $12/service connection + $10/1K client MAU",
 			},
 			openSource: { status: "none", details: "Proprietary" },
 			selfHosted: {
@@ -655,11 +656,11 @@ const providers: Provider[] = [
 			},
 			freeTier: {
 				status: "strong",
-				details: "Generous free tier: 50k requests/mo",
+				details: "Free: 50K requests/month, 1 team member",
 			},
 			paidPricing: {
 				status: "strong",
-				details: "$45/mo (Startup), custom Scale-Up/Enterprise",
+				details: "Start-Up: $45/mo, 1M requests, 3 team members",
 			},
 			openSource: {
 				status: "strong",
@@ -803,7 +804,7 @@ const providers: Provider[] = [
 			},
 			paidPricing: {
 				status: "strong",
-				details: "$80/mo Pro, custom Enterprise",
+				details: "Pay-as-you-go: $75/seat/mo, 53M API requests (Cloud)",
 			},
 			openSource: {
 				status: "strong",
@@ -1375,11 +1376,11 @@ const providers: Provider[] = [
 			},
 			freeTier: {
 				status: "strong",
-				details: "Free tier: 1k MAU",
+				details: "Free: 1K client MAUs",
 			},
 			paidPricing: {
 				status: "strong",
-				details: "$30/mo (Startup), custom Growth/Enterprise",
+				details: "Developer: $10/mo (annual), Business: $500/mo (annual)",
 			},
 			openSource: {
 				status: "partial",
@@ -1519,11 +1520,11 @@ const providers: Provider[] = [
 			},
 			freeTier: {
 				status: "strong",
-				details: "Free forever: 10 flags, 1k requests",
+				details: "Free: 10 flags, 2 environments, 5M config downloads",
 			},
 			paidPricing: {
 				status: "strong",
-				details: "$39/mo (Pro), $139/mo (Smart), custom Enterprise",
+				details: "Pro: $110/mo (100 flags), Smart: $325/mo (unlimited)",
 			},
 			openSource: {
 				status: "partial",
