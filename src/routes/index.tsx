@@ -1233,7 +1233,7 @@ function Home() {
 					<RiShieldKeyholeFill className="w-4 h-4 mt-0.5" />
 					<h1 className="text-lg font-medium">auth.compare</h1>
 					<span className="text-xs text-muted-foreground">
-						⋅ Auth providers comparison matrix
+						⋅ Easily compare different authentication providers/libraries
 					</span>
 				</div>
 				<div className="flex items-center gap-2">
