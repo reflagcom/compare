@@ -12,7 +12,14 @@ import { useId, useState } from "react";
 import RiCheckboxCircleFill from "remixicon-react/CheckboxCircleFillIcon";
 import RiCloseCircleFill from "remixicon-react/CloseLineIcon";
 import RiErrorWarningLine from "remixicon-react/ErrorWarningLineIcon";
-import RiShieldKeyholeFill from "remixicon-react/ShieldKeyholeFillIcon";
+import RiKey2Line from "remixicon-react/Key2LineIcon";
+import RiMoneyDollarCircleLine from "remixicon-react/MoneyDollarCircleLineIcon";
+import RiPlugLine from "remixicon-react/PlugLineIcon";
+import RiServerLine from "remixicon-react/ServerLineIcon";
+import RiShieldCheckLine from "remixicon-react/ShieldCheckLineIcon";
+import RiShieldKeyholeLine from "remixicon-react/ShieldKeyholeLineIcon";
+import RiTerminalBoxLine from "remixicon-react/TerminalBoxLineIcon";
+import RiUserLine from "remixicon-react/UserLineIcon";
 import { Switch } from "@/components/ui/switch";
 import {
 	TableBody,
@@ -959,10 +966,11 @@ const providers: Record<string, Record<string, FeatureValue>> = {
 // Feature categories and labels
 const featureCategories: Record<
 	string,
-	{ label: string; features: Record<string, string> }
+	{ label: string; icon: React.ReactNode; features: Record<string, string> }
 > = {
 	authentication: {
-		label: "🔑 Core Authentication",
+		label: "Core Authentication",
+		icon: <RiKey2Line className="w-4 h-4 text-blue-300" />,
 		features: {
 			emailPassword: "Email/Password",
 			passwordless: "Passwordless (Magic Links)",
@@ -972,7 +980,8 @@ const featureCategories: Record<
 		},
 	},
 	userManagement: {
-		label: "👤 User Management",
+		label: "User Management",
+		icon: <RiUserLine className="w-4 h-4 text-purple-300" />,
 		features: {
 			mfa: "Multi-Factor Auth",
 			rbac: "RBAC/Permissions",
@@ -981,7 +990,8 @@ const featureCategories: Record<
 		},
 	},
 	developerExperience: {
-		label: "🛠️ Developer Experience",
+		label: "Developer Experience",
+		icon: <RiTerminalBoxLine className="w-4 h-4 text-green-300" />,
 		features: {
 			frontendSDKs: "Frontend SDKs",
 			prebuiltUI: "Pre-built UI Components",
@@ -990,7 +1000,8 @@ const featureCategories: Record<
 		},
 	},
 	security: {
-		label: "🔒 Security & Compliance",
+		label: "Security & Compliance",
+		icon: <RiShieldCheckLine className="w-4 h-4 text-red-300" />,
 		features: {
 			sessionManagement: "Session Management",
 			jwtSupport: "JWT Support",
@@ -999,21 +1010,24 @@ const featureCategories: Record<
 		},
 	},
 	pricing: {
-		label: "💰 Pricing",
+		label: "Pricing",
+		icon: <RiMoneyDollarCircleLine className="w-4 h-4 text-amber-300" />,
 		features: {
 			freeTier: "Free Tier",
 			paidPricing: "Paid Pricing",
 		},
 	},
 	deployment: {
-		label: "🏗️ Deployment",
+		label: "Deployment",
+		icon: <RiServerLine className="w-4 h-4 text-cyan-300" />,
 		features: {
 			openSource: "Open Source",
 			selfHosted: "Self-Hosted Option",
 		},
 	},
 	integrations: {
-		label: "🌐 Integrations",
+		label: "Integrations",
+		icon: <RiPlugLine className="w-4 h-4 text-pink-300" />,
 		features: {
 			oauthProviders: "OAuth Providers",
 			webhooks: "Webhooks",
@@ -1082,7 +1096,8 @@ type FeatureRow = {
 	feature: string;
 	featureKey?: string;
 	isCategory?: boolean;
-	[key: string]: string | FeatureValue | boolean | undefined;
+	categoryIcon?: React.ReactNode;
+	[key: string]: string | FeatureValue | boolean | React.ReactNode | undefined;
 };
 
 const providerNames = Object.keys(providers);
@@ -1106,6 +1121,7 @@ Object.entries(featureCategories).forEach(([_categoryKey, category]) => {
 	// Add category header row
 	data.push({
 		feature: category.label,
+		categoryIcon: category.icon,
 		isCategory: true,
 	});
 
@@ -1151,15 +1167,21 @@ function Home() {
 			cell: ({ getValue, row }) => {
 				const featureName = getValue();
 				const isCategory = row.original.isCategory;
+				const categoryIcon = row.original.categoryIcon;
 
 				// Category header row
 				if (isCategory) {
-					return <div className="font-bold text-md py-2">{featureName}</div>;
+					return (
+						<div className="font-bold text-md py-2 flex items-center gap-2">
+							{categoryIcon}
+							{featureName}
+						</div>
+					);
 				}
 
 				// Regular feature row with left indent
 				return (
-					<div className="font-medium text-sm text-muted-foreground pl-4">
+					<div className="font-medium text-sm text-muted-foreground pl-6.5">
 						{featureName}
 					</div>
 				);
@@ -1203,13 +1225,22 @@ function Home() {
 						return null;
 					}
 
-					return (
-						<FeatureCell
-							value={value}
-							isRowExpanded={showExpandedContent}
-							featureKey={featureKey}
-						/>
-					);
+					// Type guard: exclude React nodes (shouldn't happen in provider columns)
+					if (
+						typeof value === "object" &&
+						value !== null &&
+						"status" in value
+					) {
+						return (
+							<FeatureCell
+								value={value}
+								isRowExpanded={showExpandedContent}
+								featureKey={featureKey}
+							/>
+						);
+					}
+
+					return null;
 				},
 				meta: {
 					headerClassName:
@@ -1230,7 +1261,7 @@ function Home() {
 		<div className="w-full h-screen flex flex-col">
 			<div className="flex items-center justify-between p-2 border-b-1 flex-shrink-0">
 				<div className="flex items-center gap-1.5">
-					<RiShieldKeyholeFill className="w-4 h-4 mt-0.5" />
+					<RiShieldKeyholeLine className="w-4 h-4 mt-0.5" />
 					<h1 className="text-lg font-medium">auth.compare</h1>
 					<span className="text-xs text-muted-foreground">
 						⋅ Easily compare different authentication providers/libraries
