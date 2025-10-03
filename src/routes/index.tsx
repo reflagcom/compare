@@ -322,6 +322,12 @@ const columns = [
 	columnHelper.accessor("feature", {
 		header: "Feature",
 		cell: ({ getValue }) => <div className="font-semibold">{getValue()}</div>,
+		meta: {
+			headerClassName:
+				"sticky left-0 z-10 bg-background after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20",
+			cellClassName:
+				"sticky left-0 z-10 bg-background after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20",
+		},
 	}),
 	...providerNames.map((providerName) =>
 		columnHelper.accessor(providerName, {
@@ -332,6 +338,10 @@ const columns = [
 				</div>
 			),
 			cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
+			meta: {
+				headerClassName: "w-48 min-w-48 max-w-48",
+				cellClassName: "w-48 min-w-48 max-w-48",
+			},
 		}),
 	),
 ];
@@ -352,8 +362,14 @@ function Home() {
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
+									const meta = header.column.columnDef.meta as
+										| { headerClassName?: string }
+										| undefined;
 									return (
-										<TableHead key={header.id}>
+										<TableHead
+											key={header.id}
+											className={meta?.headerClassName}
+										>
 											{header.isPlaceholder
 												? null
 												: flexRender(
@@ -370,14 +386,19 @@ function Home() {
 						{table.getRowModel().rows?.length ? (
 							table.getRowModel().rows.map((row) => (
 								<TableRow key={row.id}>
-									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>
-											{flexRender(
-												cell.column.columnDef.cell,
-												cell.getContext(),
-											)}
-										</TableCell>
-									))}
+									{row.getVisibleCells().map((cell) => {
+										const meta = cell.column.columnDef.meta as
+											| { cellClassName?: string }
+											| undefined;
+										return (
+											<TableCell key={cell.id} className={meta?.cellClassName}>
+												{flexRender(
+													cell.column.columnDef.cell,
+													cell.getContext(),
+												)}
+											</TableCell>
+										);
+									})}
 								</TableRow>
 							))
 						) : (
