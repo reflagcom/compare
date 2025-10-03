@@ -5,7 +5,7 @@ import { ComparisonTable } from "../components/ComparisonTable";
 import { authComparisonConfig } from "../data/auth-comparison";
 
 export const Route = createFileRoute("/")({
-component: Home,
+	component: Home,
 });
 
 function Home() {
