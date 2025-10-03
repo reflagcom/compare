@@ -14,7 +14,6 @@ import RiCloseCircleFill from "remixicon-react/CloseLineIcon";
 import RiErrorWarningLine from "remixicon-react/ErrorWarningLineIcon";
 import { Switch } from "@/components/ui/switch";
 import {
-	Table,
 	TableBody,
 	TableCell,
 	TableHead,
@@ -202,140 +201,757 @@ type FeatureValue = {
 // Provider data organized by provider name
 const providers: Record<string, Record<string, FeatureValue>> = {
 	Clerk: {
-		freeTier: { status: "strong", details: "10k MAU" },
-		frontendComponents: {
+		// Overview
+		tagline: {
 			status: "strong",
-			details: "React, Next.js, Remix, Astro, Vue",
+			details:
+				"Complete user management - authentication, profiles, and organizations",
 		},
-		openSource: { status: "none", details: "No" },
-		oAuth: {
+
+		// Core Authentication
+		emailPassword: {
 			status: "strong",
-			details: "Google, GitHub, Microsoft, Apple, Discord, X",
+			details: "Email + password with verification",
 		},
-		mfa: { status: "strong", details: "SMS, TOTP, Backup codes" },
-		selfHosted: { status: "none", details: "No" },
-		paidPricing: { status: "strong", details: "$0.02/MAU after 10k" },
-		sessionManagement: { status: "strong", details: "Yes" },
-		rbac: { status: "partial", details: "Yes (Pro plan)" },
+		passwordless: {
+			status: "strong",
+			details: "Email magic links & verification codes",
+		},
+		socialLogins: {
+			status: "strong",
+			details: "Google, GitHub, Microsoft, Apple, 20+ providers",
+		},
+		enterpriseSSO: {
+			status: "strong",
+			details: "SAML & OIDC (Enhanced Auth $100/mo addon)",
+		},
+		passkeys: { status: "strong", details: "WebAuthn/FIDO2 (paid plans only)" },
+
+		// User Management
+		mfa: {
+			status: "strong",
+			details: "SMS, TOTP, Backup codes (Enhanced Auth $100/mo addon)",
+		},
+		rbac: {
+			status: "strong",
+			details: "Custom roles & permissions (Enhanced Auth $100/mo addon)",
+		},
+		userProfiles: {
+			status: "strong",
+			details: "Customizable with metadata fields",
+		},
+		organizations: {
+			status: "strong",
+			details: "Built-in teams with invitations",
+		},
+
+		// Developer Experience
+		frontendSDKs: {
+			status: "strong",
+			details: "React, Next.js, Remix, Gatsby, Vue, Svelte",
+		},
+		prebuiltUI: {
+			status: "strong",
+			details: "Fully customizable components & themes",
+		},
+		documentation: {
+			status: "strong",
+			details: "Excellent docs with tutorials & examples",
+		},
+		apiApproach: {
+			status: "strong",
+			details: "REST API + SDKs with TypeScript support",
+		},
+
+		// Security & Compliance
+		sessionManagement: {
+			status: "strong",
+			details: "Customizable duration & refresh tokens",
+		},
+		jwtSupport: { status: "strong", details: "JWTs with custom claims" },
+		compliance: {
+			status: "strong",
+			details: "SOC 2 Type II, GDPR, HIPAA (Enterprise)",
+		},
+		rateLimiting: {
+			status: "strong",
+			details: "Built-in DDoS & bot protection",
+		},
+
+		// Pricing
+		freeTier: { status: "strong", details: "10,000 MAU" },
+		paidPricing: { status: "strong", details: "$25/mo + $0.02/MAU" },
+
+		// Deployment
+		openSource: { status: "none", details: "Proprietary" },
+		selfHosted: { status: "none", details: "Cloud-only SaaS" },
+
+		// Integrations
+		oauthProviders: {
+			status: "strong",
+			details: "20+ social, enterprise, Web3 providers",
+		},
+		webhooks: { status: "strong", details: "Real-time event webhooks (Svix)" },
+		thirdPartyIntegrations: {
+			status: "strong",
+			details: "Segment, Vercel, Netlify, analytics tools",
+		},
 	},
 	Auth0: {
-		freeTier: { status: "strong", details: "7.5k MAU" },
-		frontendComponents: {
+		// Overview
+		tagline: {
 			status: "strong",
-			details: "React, Angular, Vue, Native SDKs",
+			details:
+				"Easy to implement, adaptable authentication and authorization platform",
 		},
-		openSource: { status: "none", details: "No" },
-		oAuth: {
+
+		// Core Authentication
+		emailPassword: {
 			status: "strong",
-			details: "Google, GitHub, Facebook, Twitter, LinkedIn, Apple",
+			details: "Email + password with verification",
 		},
-		mfa: { status: "strong", details: "SMS, TOTP, Email, Push" },
-		selfHosted: { status: "none", details: "No" },
-		paidPricing: { status: "strong", details: "Starts at $35/month" },
-		sessionManagement: { status: "strong", details: "Yes" },
-		rbac: { status: "strong", details: "Yes" },
+		passwordless: { status: "strong", details: "Email, SMS magic links" },
+		socialLogins: {
+			status: "strong",
+			details: "30+ providers including all major platforms",
+		},
+		enterpriseSSO: {
+			status: "strong",
+			details: "SAML, OIDC, AD, LDAP (Professional+)",
+		},
+		passkeys: { status: "strong", details: "WebAuthn/FIDO2 biometric auth" },
+
+		// User Management
+		mfa: { status: "strong", details: "SMS, TOTP, Email, Push, WebAuthn" },
+		rbac: {
+			status: "strong",
+			details: "Core RBAC (Professional+), fine-grained permissions",
+		},
+		userProfiles: {
+			status: "strong",
+			details: "Customizable with metadata & progressive profiling",
+		},
+		organizations: {
+			status: "strong",
+			details: "B2B organizations (Professional+)",
+		},
+
+		// Developer Experience
+		frontendSDKs: {
+			status: "strong",
+			details: "React, Angular, Vue, iOS, Android, many more",
+		},
+		prebuiltUI: {
+			status: "strong",
+			details: "Universal Login with customizable Lock widget",
+		},
+		documentation: {
+			status: "strong",
+			details: "Comprehensive docs with quickstarts",
+		},
+		apiApproach: { status: "strong", details: "REST API + Management API" },
+
+		// Security & Compliance
+		sessionManagement: {
+			status: "strong",
+			details: "Refresh tokens, SSO sessions, device tracking",
+		},
+		jwtSupport: {
+			status: "strong",
+			details: "JWTs with custom claims & namespacing",
+		},
+		compliance: {
+			status: "strong",
+			details: "SOC 2 Type II, ISO 27001, GDPR, HIPAA",
+		},
+		rateLimiting: {
+			status: "strong",
+			details: "Configurable rate limits & anomaly detection",
+		},
+
+		// Pricing
+		freeTier: { status: "strong", details: "7,500 MAU" },
+		paidPricing: {
+			status: "strong",
+			details: "$35/mo (Essentials), $240/mo (Professional)",
+		},
+
+		// Deployment
+		openSource: { status: "none", details: "Proprietary" },
+		selfHosted: {
+			status: "none",
+			details: "Cloud-only (Private Cloud available)",
+		},
+
+		// Integrations
+		oauthProviders: {
+			status: "strong",
+			details: "30+ social + enterprise connections",
+		},
+		webhooks: {
+			status: "strong",
+			details: "Log streams & webhooks (Professional+)",
+		},
+		thirdPartyIntegrations: {
+			status: "strong",
+			details: "Extensive marketplace with 100+ integrations",
+		},
 	},
 	"Supabase Auth": {
-		freeTier: { status: "strong", details: "50k MAU" },
-		frontendComponents: {
+		// Overview
+		tagline: {
 			status: "strong",
-			details: "React, Vue, Svelte, SolidJS",
+			details: "Open source auth with PostgreSQL Row Level Security",
 		},
-		openSource: { status: "strong", details: "Yes" },
-		oAuth: {
+
+		// Core Authentication
+		emailPassword: {
 			status: "strong",
-			details: "Google, GitHub, GitLab, Bitbucket, Azure, Discord",
+			details: "Email + password with confirmation",
 		},
-		mfa: { status: "partial", details: "TOTP" },
-		selfHosted: { status: "strong", details: "Yes" },
-		paidPricing: { status: "strong", details: "$0.00325/MAU after 100k" },
-		sessionManagement: { status: "strong", details: "Yes" },
-		rbac: { status: "strong", details: "Yes (Row Level Security)" },
+		passwordless: { status: "strong", details: "Magic links via email" },
+		socialLogins: {
+			status: "strong",
+			details: "Google, GitHub, GitLab, Slack, 10+ providers",
+		},
+		enterpriseSSO: {
+			status: "partial",
+			details: "SAML (Enterprise plan only)",
+		},
+		passkeys: { status: "partial", details: "Experimental WebAuthn support" },
+
+		// User Management
+		mfa: { status: "strong", details: "TOTP authenticator apps" },
+		rbac: {
+			status: "strong",
+			details: "Row Level Security (RLS) with PostgreSQL policies",
+		},
+		userProfiles: {
+			status: "strong",
+			details: "Stored in users table with custom fields",
+		},
+		organizations: {
+			status: "partial",
+			details: "Build your own with RLS policies",
+		},
+
+		// Developer Experience
+		frontendSDKs: {
+			status: "strong",
+			details: "JavaScript, React, Vue, Svelte, Angular, Flutter",
+		},
+		prebuiltUI: {
+			status: "strong",
+			details: "Auth UI library with customizable components",
+		},
+		documentation: {
+			status: "strong",
+			details: "Excellent docs with video tutorials",
+		},
+		apiApproach: {
+			status: "strong",
+			details: "RESTful + Realtime + GraphQL (pg_graphql)",
+		},
+
+		// Security & Compliance
+		sessionManagement: {
+			status: "strong",
+			details: "JWT with refresh tokens & auto-refresh",
+		},
+		jwtSupport: {
+			status: "strong",
+			details: "JWTs with custom claims via PostgreSQL functions",
+		},
+		compliance: {
+			status: "strong",
+			details: "SOC 2 Type II, GDPR, HIPAA (Enterprise)",
+		},
+		rateLimiting: {
+			status: "strong",
+			details: "Built-in rate limiting per endpoint",
+		},
+
+		// Pricing
+		freeTier: { status: "strong", details: "50,000 MAU" },
+		paidPricing: { status: "strong", details: "$25/mo + $0.00325/MAU" },
+
+		// Deployment
+		openSource: {
+			status: "strong",
+			details: "MIT License (fully open source)",
+		},
+		selfHosted: { status: "strong", details: "Docker self-hosting available" },
+
+		// Integrations
+		oauthProviders: {
+			status: "strong",
+			details: "10+ providers with custom OAuth",
+		},
+		webhooks: {
+			status: "strong",
+			details: "Database webhooks via pg_net or Edge Functions",
+		},
+		thirdPartyIntegrations: {
+			status: "partial",
+			details: "Growing ecosystem with partner integrations",
+		},
 	},
 	"Auth.js (NextAuth)": {
-		freeTier: { status: "strong", details: "Unlimited (self-hosted)" },
-		frontendComponents: {
+		// Overview
+		tagline: {
 			status: "strong",
-			details: "Next.js, SvelteKit, Express, Qwik",
+			details: "Free and open source authentication for the web",
 		},
-		openSource: { status: "strong", details: "Yes" },
-		oAuth: {
+
+		// Core Authentication
+		emailPassword: {
 			status: "strong",
-			details: "Google, GitHub, Facebook, Twitter, 80+ providers",
+			details: "Credentials provider with custom logic",
 		},
-		mfa: { status: "partial", details: "Via custom implementation" },
-		selfHosted: { status: "strong", details: "Yes (required)" },
-		paidPricing: { status: "strong", details: "Free (open source)" },
-		sessionManagement: { status: "strong", details: "Yes" },
-		rbac: { status: "partial", details: "Custom implementation" },
+		passwordless: { status: "strong", details: "Email magic links built-in" },
+		socialLogins: { status: "strong", details: "80+ built-in OAuth providers" },
+		enterpriseSSO: {
+			status: "partial",
+			details: "Via custom providers (SAML, OIDC possible)",
+		},
+		passkeys: {
+			status: "partial",
+			details: "Via SimpleWebAuthn or custom implementation",
+		},
+
+		// User Management
+		mfa: { status: "partial", details: "Custom implementation via callbacks" },
+		rbac: {
+			status: "partial",
+			details: "Build your own with session callbacks",
+		},
+		userProfiles: { status: "partial", details: "Store in your own database" },
+		organizations: {
+			status: "partial",
+			details: "Build your own with custom logic",
+		},
+
+		// Developer Experience
+		frontendSDKs: {
+			status: "strong",
+			details: "Next.js, SvelteKit, SolidStart, Express",
+		},
+		prebuiltUI: {
+			status: "partial",
+			details: "Basic sign-in pages (customizable)",
+		},
+		documentation: {
+			status: "strong",
+			details: "Good docs with many examples",
+		},
+		apiApproach: {
+			status: "strong",
+			details: "Framework-integrated API routes",
+		},
+
+		// Security & Compliance
+		sessionManagement: {
+			status: "strong",
+			details: "JWT or database sessions with rotation",
+		},
+		jwtSupport: {
+			status: "strong",
+			details: "JWT with custom claims via callbacks",
+		},
+		compliance: {
+			status: "partial",
+			details: "Your responsibility (self-hosted)",
+		},
+		rateLimiting: {
+			status: "partial",
+			details: "Implement via middleware or proxies",
+		},
+
+		// Pricing
+		freeTier: {
+			status: "strong",
+			details: "Unlimited (self-hosted, open source)",
+		},
+		paidPricing: { status: "none", details: "Free forever" },
+
+		// Deployment
+		openSource: { status: "strong", details: "ISC License (MIT-compatible)" },
+		selfHosted: {
+			status: "strong",
+			details: "Required (runs on your infrastructure)",
+		},
+
+		// Integrations
+		oauthProviders: {
+			status: "strong",
+			details: "80+ providers (Google, GitHub, Apple, etc.)",
+		},
+		webhooks: {
+			status: "partial",
+			details: "Build your own with event callbacks",
+		},
+		thirdPartyIntegrations: {
+			status: "partial",
+			details: "Community adapters for various databases",
+		},
 	},
 	"Firebase Auth": {
-		freeTier: { status: "strong", details: "Unlimited" },
-		frontendComponents: {
+		// Overview
+		tagline: {
 			status: "strong",
-			details: "React, Angular, Vue, Flutter, iOS, Android",
+			details:
+				"Simple, multi-platform sign-in with backend services and ready-made UI",
 		},
-		openSource: { status: "none", details: "No" },
-		oAuth: {
+
+		// Core Authentication
+		emailPassword: {
 			status: "strong",
-			details: "Google, Facebook, Twitter, GitHub, Microsoft, Apple",
+			details: "Email + password with verification links",
 		},
-		mfa: { status: "strong", details: "SMS, TOTP" },
-		selfHosted: { status: "none", details: "No" },
-		paidPricing: { status: "strong", details: "Free (pay for usage)" },
-		sessionManagement: { status: "strong", details: "Yes" },
-		rbac: { status: "partial", details: "Via Firebase Security Rules" },
+		passwordless: { status: "strong", details: "Email links & anonymous auth" },
+		socialLogins: {
+			status: "strong",
+			details: "Google, Facebook, Apple, Microsoft, GitHub, Twitter",
+		},
+		enterpriseSSO: {
+			status: "strong",
+			details: "SAML & OIDC (Identity Platform)",
+		},
+		passkeys: {
+			status: "partial",
+			details: "Via Firebase Extensions or custom",
+		},
+
+		// User Management
+		mfa: { status: "strong", details: "SMS, TOTP (Google Authenticator)" },
+		rbac: { status: "partial", details: "Custom claims + Security Rules" },
+		userProfiles: {
+			status: "partial",
+			details: "Store in Firestore with custom logic",
+		},
+		organizations: {
+			status: "partial",
+			details: "Build with Firestore & Security Rules",
+		},
+
+		// Developer Experience
+		frontendSDKs: {
+			status: "strong",
+			details: "Web, iOS, Android, Flutter, Unity, C++",
+		},
+		prebuiltUI: {
+			status: "strong",
+			details: "FirebaseUI for Web, iOS, Android",
+		},
+		documentation: {
+			status: "strong",
+			details: "Excellent docs with video courses",
+		},
+		apiApproach: {
+			status: "strong",
+			details: "Client SDKs + Admin SDK for backend",
+		},
+
+		// Security & Compliance
+		sessionManagement: {
+			status: "strong",
+			details: "ID tokens with automatic refresh",
+		},
+		jwtSupport: { status: "strong", details: "Firebase ID tokens (JWTs)" },
+		compliance: { status: "strong", details: "SOC 2, SOC 3, ISO 27001, GDPR" },
+		rateLimiting: {
+			status: "strong",
+			details: "App Check + Cloud Armor integration",
+		},
+
+		// Pricing
+		freeTier: {
+			status: "strong",
+			details: "Unlimited auth users (no MAU limits)",
+		},
+		paidPricing: {
+			status: "partial",
+			details: "Free auth; phone SMS $0.06/verification",
+		},
+
+		// Deployment
+		openSource: {
+			status: "none",
+			details: "Proprietary (Firebase Emulators for dev)",
+		},
+		selfHosted: { status: "none", details: "Cloud-only Google service" },
+
+		// Integrations
+		oauthProviders: {
+			status: "strong",
+			details: "6+ social + custom OAuth/SAML",
+		},
+		webhooks: {
+			status: "partial",
+			details: "Cloud Functions triggers for auth events",
+		},
+		thirdPartyIntegrations: {
+			status: "strong",
+			details: "Google ecosystem + Firebase Extensions",
+		},
 	},
 	Lucia: {
-		freeTier: { status: "strong", details: "Unlimited (library)" },
-		frontendComponents: {
+		// Overview
+		tagline: {
 			status: "strong",
-			details: "Framework agnostic",
+			details:
+				"Open source library to implement authentication using JavaScript",
 		},
-		openSource: { status: "strong", details: "Yes" },
-		oAuth: {
+
+		// Core Authentication
+		emailPassword: {
 			status: "strong",
-			details: "Via Arctic (50+ providers)",
+			details: "Build your own with database",
 		},
-		mfa: { status: "partial", details: "Custom implementation" },
-		selfHosted: { status: "strong", details: "Yes (library)" },
-		paidPricing: { status: "strong", details: "Free (open source)" },
-		sessionManagement: { status: "strong", details: "Yes (built-in)" },
-		rbac: { status: "partial", details: "Custom implementation" },
+		passwordless: {
+			status: "partial",
+			details: "Implement yourself with email service",
+		},
+		socialLogins: {
+			status: "strong",
+			details: "Arctic library: 50+ OAuth providers",
+		},
+		enterpriseSSO: {
+			status: "partial",
+			details: "Custom SAML/OIDC implementation needed",
+		},
+		passkeys: { status: "partial", details: "Use SimpleWebAuthn library" },
+
+		// User Management
+		mfa: { status: "partial", details: "Build your own TOTP/SMS logic" },
+		rbac: { status: "partial", details: "Implement with your database schema" },
+		userProfiles: { status: "partial", details: "Your database, your schema" },
+		organizations: { status: "partial", details: "Build from scratch" },
+
+		// Developer Experience
+		frontendSDKs: {
+			status: "partial",
+			details: "Framework-agnostic TypeScript library",
+		},
+		prebuiltUI: { status: "none", details: "No pre-built UI (you build it)" },
+		documentation: { status: "strong", details: "Clear docs with examples" },
+		apiApproach: { status: "strong", details: "Session-based auth library" },
+
+		// Security & Compliance
+		sessionManagement: {
+			status: "strong",
+			details: "Secure database-backed sessions",
+		},
+		jwtSupport: { status: "partial", details: "Use jose or other JWT library" },
+		compliance: {
+			status: "partial",
+			details: "Your responsibility (self-implemented)",
+		},
+		rateLimiting: { status: "partial", details: "Implement via middleware" },
+
+		// Pricing
+		freeTier: {
+			status: "strong",
+			details: "Unlimited (library, not a service)",
+		},
+		paidPricing: { status: "none", details: "Free forever (MIT license)" },
+
+		// Deployment
+		openSource: { status: "strong", details: "MIT License (fully open)" },
+		selfHosted: { status: "strong", details: "Required (TypeScript library)" },
+
+		// Integrations
+		oauthProviders: {
+			status: "strong",
+			details: "Arctic: 50+ OAuth providers",
+		},
+		webhooks: { status: "partial", details: "Build your own event system" },
+		thirdPartyIntegrations: {
+			status: "none",
+			details: "Minimal (DIY approach)",
+		},
 	},
 	WorkOS: {
-		freeTier: { status: "strong", details: "1M MAU" },
-		frontendComponents: {
+		// Overview
+		tagline: {
 			status: "strong",
-			details: "React, Next.js, Vanilla JS",
+			details:
+				"Your app, enterprise ready - APIs for SSO, SCIM, and user management",
 		},
-		openSource: { status: "none", details: "No" },
-		oAuth: {
+
+		// Core Authentication
+		emailPassword: { status: "strong", details: "AuthKit email + password" },
+		passwordless: { status: "strong", details: "Magic links via AuthKit" },
+		socialLogins: {
 			status: "strong",
-			details: "Google, Microsoft, GitHub + Enterprise SSO/SAML",
+			details: "Microsoft, Google, GitHub via AuthKit",
 		},
-		mfa: { status: "strong", details: "SMS, TOTP" },
-		selfHosted: { status: "none", details: "No" },
-		paidPricing: { status: "strong", details: "$2,500/1M MAU after 1M" },
-		sessionManagement: { status: "strong", details: "Yes" },
-		rbac: { status: "strong", details: "Yes" },
+		enterpriseSSO: {
+			status: "strong",
+			details: "SAML, OIDC (enterprise focus)",
+		},
+		passkeys: { status: "partial", details: "Coming soon to AuthKit" },
+
+		// User Management
+		mfa: { status: "strong", details: "TOTP, SMS included in AuthKit" },
+		rbac: {
+			status: "strong",
+			details: "Built-in with AuthKit & Organizations API",
+		},
+		userProfiles: {
+			status: "strong",
+			details: "User Management API with metadata",
+		},
+		organizations: {
+			status: "strong",
+			details: "Organizations API (B2B focus)",
+		},
+
+		// Developer Experience
+		frontendSDKs: { status: "strong", details: "React, Next.js, Node.js SDKs" },
+		prebuiltUI: {
+			status: "strong",
+			details: "AuthKit hosted UI with customization",
+		},
+		documentation: { status: "strong", details: "Developer-focused docs" },
+		apiApproach: {
+			status: "strong",
+			details: "Modern REST APIs with webhooks",
+		},
+
+		// Security & Compliance
+		sessionManagement: {
+			status: "strong",
+			details: "Managed sessions via AuthKit",
+		},
+		jwtSupport: { status: "strong", details: "JWTs for API authentication" },
+		compliance: { status: "strong", details: "SOC 2 Type II, GDPR, HIPAA" },
+		rateLimiting: {
+			status: "strong",
+			details: "Enterprise-grade rate limiting",
+		},
+
+		// Pricing
+		freeTier: { status: "strong", details: "1 million MAU (generous)" },
+		paidPricing: { status: "strong", details: "$2,500/mo per 1M MAU" },
+
+		// Deployment
+		openSource: { status: "none", details: "Proprietary" },
+		selfHosted: { status: "none", details: "Cloud-only SaaS" },
+
+		// Integrations
+		oauthProviders: {
+			status: "strong",
+			details: "Social + enterprise SSO providers",
+		},
+		webhooks: {
+			status: "strong",
+			details: "Event-driven webhooks for all APIs",
+		},
+		thirdPartyIntegrations: {
+			status: "strong",
+			details: "Directory Sync (SCIM), Audit Logs, MFA",
+		},
 	},
 	Keycloak: {
-		freeTier: { status: "strong", details: "Unlimited (self-hosted)" },
-		frontendComponents: {
+		// Overview
+		tagline: {
 			status: "strong",
-			details: "JavaScript, Java, Node.js adapters",
+			details:
+				"Open source identity and access management - add authentication with minimum effort",
 		},
-		openSource: { status: "strong", details: "Yes" },
-		oAuth: {
+
+		// Core Authentication
+		emailPassword: { status: "strong", details: "Username/email + password" },
+		passwordless: { status: "partial", details: "WebAuthn or custom flows" },
+		socialLogins: {
 			status: "strong",
-			details: "Google, GitHub, Facebook, SAML, LDAP",
+			details: "Google, GitHub, Facebook, LinkedIn, etc.",
 		},
-		mfa: { status: "strong", details: "OTP, WebAuthn" },
-		selfHosted: { status: "strong", details: "Yes (required)" },
-		paidPricing: { status: "strong", details: "Free (open source)" },
-		sessionManagement: { status: "strong", details: "Yes" },
-		rbac: { status: "strong", details: "Yes (built-in)" },
+		enterpriseSSO: {
+			status: "strong",
+			details: "SAML 2.0, OIDC, LDAP, Kerberos",
+		},
+		passkeys: { status: "strong", details: "WebAuthn/FIDO2 built-in" },
+
+		// User Management
+		mfa: { status: "strong", details: "OTP, WebAuthn/FIDO2, SMS (via SPI)" },
+		rbac: {
+			status: "strong",
+			details: "Fine-grained authorization with policies",
+		},
+		userProfiles: {
+			status: "strong",
+			details: "Customizable attributes & federation",
+		},
+		organizations: {
+			status: "strong",
+			details: "Realms & organizations (multi-tenancy)",
+		},
+
+		// Developer Experience
+		frontendSDKs: {
+			status: "strong",
+			details: "JavaScript, Java, Python, .NET, Go adapters",
+		},
+		prebuiltUI: {
+			status: "partial",
+			details: "Admin console + customizable login themes",
+		},
+		documentation: { status: "strong", details: "Comprehensive official docs" },
+		apiApproach: {
+			status: "strong",
+			details: "REST Admin API + standard OAuth/OIDC",
+		},
+
+		// Security & Compliance
+		sessionManagement: {
+			status: "strong",
+			details: "SSO sessions, offline tokens, revocation",
+		},
+		jwtSupport: {
+			status: "strong",
+			details: "JWTs with custom claims & mappers",
+		},
+		compliance: {
+			status: "partial",
+			details: "Your responsibility (self-hosted)",
+		},
+		rateLimiting: {
+			status: "partial",
+			details: "Via reverse proxy or extensions",
+		},
+
+		// Pricing
+		freeTier: {
+			status: "strong",
+			details: "Unlimited (self-hosted, open source)",
+		},
+		paidPricing: {
+			status: "none",
+			details: "Free (Red Hat support available)",
+		},
+
+		// Deployment
+		openSource: { status: "strong", details: "Apache 2.0 License" },
+		selfHosted: {
+			status: "strong",
+			details: "Required (Java app, Docker, Kubernetes)",
+		},
+
+		// Integrations
+		oauthProviders: {
+			status: "strong",
+			details: "OAuth 2.0, OIDC, SAML, LDAP, social providers",
+		},
+		webhooks: {
+			status: "partial",
+			details: "Event listeners via SPI extensions",
+		},
+		thirdPartyIntegrations: {
+			status: "strong",
+			details: "Extensive via SPIs & adapters",
+		},
 	},
 };
 
@@ -344,33 +960,63 @@ const featureCategories: Record<
 	string,
 	{ label: string; features: Record<string, string> }
 > = {
+	authentication: {
+		label: "🔑 Core Authentication",
+		features: {
+			emailPassword: "Email/Password",
+			passwordless: "Passwordless (Magic Links)",
+			socialLogins: "Social Logins",
+			enterpriseSSO: "Enterprise SSO (SAML/OIDC)",
+			passkeys: "Passkeys/WebAuthn",
+		},
+	},
+	userManagement: {
+		label: "👤 User Management",
+		features: {
+			mfa: "Multi-Factor Auth",
+			rbac: "RBAC/Permissions",
+			userProfiles: "User Profiles",
+			organizations: "Organizations/Teams",
+		},
+	},
+	developerExperience: {
+		label: "🛠️ Developer Experience",
+		features: {
+			frontendSDKs: "Frontend SDKs",
+			prebuiltUI: "Pre-built UI Components",
+			documentation: "Documentation Quality",
+			apiApproach: "API Approach",
+		},
+	},
+	security: {
+		label: "🔒 Security & Compliance",
+		features: {
+			sessionManagement: "Session Management",
+			jwtSupport: "JWT Support",
+			compliance: "SOC 2 / GDPR Compliance",
+			rateLimiting: "Rate Limiting / DDoS Protection",
+		},
+	},
 	pricing: {
-		label: "Pricing",
+		label: "💰 Pricing",
 		features: {
 			freeTier: "Free Tier",
 			paidPricing: "Paid Pricing",
 		},
 	},
 	deployment: {
-		label: "Deployment",
+		label: "🏗️ Deployment",
 		features: {
 			openSource: "Open Source",
-			selfHosted: "Self-Hosted",
+			selfHosted: "Self-Hosted Option",
 		},
 	},
-	security: {
-		label: "Security & Access",
+	integrations: {
+		label: "🌐 Integrations",
 		features: {
-			mfa: "MFA",
-			rbac: "RBAC",
-			sessionManagement: "Sessions",
-		},
-	},
-	integration: {
-		label: "Integration",
-		features: {
-			frontendComponents: "Frontend SDKs",
-			oAuth: "OAuth Providers",
+			oauthProviders: "OAuth Providers",
+			webhooks: "Webhooks",
+			thirdPartyIntegrations: "Third-Party Integrations",
 		},
 	},
 };
@@ -391,10 +1037,21 @@ function StatusIcon({ status }: { status: Status }) {
 function FeatureCell({
 	value,
 	isRowExpanded,
+	featureKey,
 }: {
 	value: FeatureValue;
 	isRowExpanded: boolean;
+	featureKey?: string;
 }) {
+	// Special handling for tagline - always show text, no icon
+	if (featureKey === "tagline") {
+		return (
+			<div className="text-xs text-left whitespace-normal py-1 text-muted-foreground italic">
+				{value.details}
+			</div>
+		);
+	}
+
 	// Determine text opacity based on status
 	const textClass =
 		value.status === "strong"
@@ -422,6 +1079,7 @@ function FeatureCell({
 // Transpose data: each row is a feature, each column is a provider
 type FeatureRow = {
 	feature: string;
+	featureKey?: string;
 	isCategory?: boolean;
 	[key: string]: string | FeatureValue | boolean | undefined;
 };
@@ -430,6 +1088,18 @@ const providerNames = Object.keys(providers);
 
 // Build data with category headers
 const data: FeatureRow[] = [];
+
+// Add tagline as a standalone first row (no category header)
+const taglineRow: FeatureRow = {
+	feature: "",
+	featureKey: "tagline",
+	isCategory: false,
+};
+providerNames.forEach((providerName) => {
+	taglineRow[providerName] =
+		providers[providerName as keyof typeof providers].tagline;
+});
+data.push(taglineRow);
 
 Object.entries(featureCategories).forEach(([_categoryKey, category]) => {
 	// Add category header row
@@ -442,6 +1112,7 @@ Object.entries(featureCategories).forEach(([_categoryKey, category]) => {
 	Object.entries(category.features).forEach(([featureKey, featureLabel]) => {
 		const row: FeatureRow = {
 			feature: featureLabel,
+			featureKey: featureKey,
 			isCategory: false,
 		};
 
@@ -460,7 +1131,17 @@ const columnHelper = createColumnHelper<FeatureRow>();
 
 function Home() {
 	const [showExpandedContent, setShowExpandedContent] = useState(false);
+	const [isScrolledVertically, setIsScrolledVertically] = useState(false);
+	const [isScrolledHorizontally, setIsScrolledHorizontally] = useState(false);
 	const switchId = useId();
+
+	// Handle scroll to show/hide sticky borders
+	const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+		const scrollTop = e.currentTarget.scrollTop;
+		const scrollLeft = e.currentTarget.scrollLeft;
+		setIsScrolledVertically(scrollTop > 0);
+		setIsScrolledHorizontally(scrollLeft > 0);
+	};
 
 	// Create columns: first column for feature names, then one column per provider
 	const columns = [
@@ -483,10 +1164,8 @@ function Home() {
 				);
 			},
 			meta: {
-				headerClassName:
-					"sticky left-0 z-10 bg-background after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20",
-				cellClassName:
-					"sticky left-0 z-10 bg-background after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20",
+				headerClassName: "sticky top-0 left-0 z-30 bg-background",
+				cellClassName: "sticky left-0 z-10 bg-background",
 			},
 		}),
 		...providerNames.map((providerName) =>
@@ -503,6 +1182,7 @@ function Home() {
 				cell: ({ getValue, row }) => {
 					const value = getValue();
 					const isCategory = row.original.isCategory;
+					const featureKey = row.original.featureKey;
 
 					// Empty cell for category rows
 					if (isCategory) {
@@ -523,11 +1203,16 @@ function Home() {
 					}
 
 					return (
-						<FeatureCell value={value} isRowExpanded={showExpandedContent} />
+						<FeatureCell
+							value={value}
+							isRowExpanded={showExpandedContent}
+							featureKey={featureKey}
+						/>
 					);
 				},
 				meta: {
-					headerClassName: "w-48 min-w-48 max-w-48",
+					headerClassName:
+						"sticky top-0 z-20 bg-background w-48 min-w-48 max-w-48",
 					cellClassName: "w-48 min-w-48 max-w-48",
 				},
 			}),
@@ -555,19 +1240,38 @@ function Home() {
 					/>
 				</div>
 			</div>
-			<div className="overflow-auto flex-1">
-				<Table>
+			<div className="overflow-auto flex-1 relative" onScroll={handleScroll}>
+				<table className="w-full caption-bottom text-sm">
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
-								{headerGroup.headers.map((header) => {
+								{headerGroup.headers.map((header, index) => {
 									const meta = header.column.columnDef.meta as
 										| { headerClassName?: string }
 										| undefined;
+									const isFirstColumn = index === 0;
+
+									// Build border classes based on scroll state
+									let borderClasses = "";
+									if (isFirstColumn) {
+										// First column: right border on horizontal scroll, bottom border on vertical scroll
+										const rightBorder = isScrolledHorizontally
+											? "after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20"
+											: "";
+										const bottomBorder = isScrolledVertically
+											? "before:absolute before:bottom-0 before:left-0 before:right-0 before:h-px before:bg-white/20"
+											: "";
+										borderClasses = `${rightBorder} ${bottomBorder}`.trim();
+									} else if (isScrolledVertically) {
+										// Other columns: only bottom border on vertical scroll
+										borderClasses =
+											"after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-white/20";
+									}
+
 									return (
 										<TableHead
 											key={header.id}
-											className={meta?.headerClassName}
+											className={`${meta?.headerClassName} ${borderClasses}`}
 										>
 											{header.isPlaceholder
 												? null
@@ -592,14 +1296,19 @@ function Home() {
 											isCategory ? "bg-muted/20 hover:bg-muted/20" : ""
 										}
 									>
-										{row.getVisibleCells().map((cell) => {
+										{row.getVisibleCells().map((cell, cellIndex) => {
 											const meta = cell.column.columnDef.meta as
 												| { cellClassName?: string }
 												| undefined;
+											const isFirstColumn = cellIndex === 0;
+											const borderClasses =
+												isScrolledHorizontally && isFirstColumn
+													? "after:absolute after:right-0 after:top-0 after:bottom-0 after:w-px after:bg-white/20"
+													: "";
 											return (
 												<TableCell
 													key={cell.id}
-													className={`${meta?.cellClassName || ""} ${showExpandedContent ? "align-top" : ""}`}
+													className={`${meta?.cellClassName || ""} ${showExpandedContent ? "align-top" : ""} ${borderClasses}`}
 												>
 													{flexRender(
 														cell.column.columnDef.cell,
@@ -622,7 +1331,7 @@ function Home() {
 							</TableRow>
 						)}
 					</TableBody>
-				</Table>
+				</table>
 			</div>
 			<footer className="border-t bg-background p-3 text-sm text-muted-foreground flex-shrink-0">
 				<div className="flex items-center gap-2">

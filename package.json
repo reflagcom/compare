@@ -7,7 +7,7 @@
 		"start": "vite --port 3000",
 		"build": "vite build",
 		"serve": "vite preview",
-		"deploy": "wrangler deploy",
+		"deploy": "npm run build && wrangler deploy",
 		"test": "vitest run",
 		"format": "biome format --write .",
 		"lint": "biome lint .",
