@@ -9,8 +9,10 @@ import {
 import type * as React from "react";
 import { useId, useMemo, useState } from "react";
 import RiCheckboxCircleFill from "remixicon-react/CheckboxCircleFillIcon";
-import RiCloseCircleFill from "remixicon-react/CloseLineIcon";
+import RiCloseCircleLine from "remixicon-react/CloseCircleLineIcon";
 import RiErrorWarningLine from "remixicon-react/ErrorWarningLineIcon";
+import RiExternalLinkLine from "remixicon-react/ExternalLinkLineIcon";
+import RiQuestionMark from "remixicon-react/QuestionMarkIcon";
 import { Switch } from "@/components/ui/switch";
 import {
 	TableBody,
@@ -33,7 +35,9 @@ function StatusIcon({ status }: { status: Status }) {
 		case "partial":
 			return <RiErrorWarningLine className="w-5 h-5 text-amber-600" />;
 		case "none":
-			return <RiCloseCircleFill className="w-5 h-5 text-gray-500" />;
+			return <RiCloseCircleLine className="w-5 h-5 text-gray-500" />;
+		case "unknown":
+			return <RiQuestionMark className="w-5 h-5 text-gray-600" />;
 	}
 }
 
@@ -62,7 +66,9 @@ function FeatureCell({
 			? "text-foreground"
 			: value.status === "none"
 				? "text-muted-foreground"
-				: "text-muted-foreground";
+				: value.status === "unknown"
+					? "text-muted-foreground/60"
+					: "text-muted-foreground";
 
 	return (
 		<div
@@ -70,10 +76,20 @@ function FeatureCell({
 		>
 			<StatusIcon status={value.status} />
 			{isRowExpanded && (
-				<div
-					className={`text-xs text-left whitespace-normal flex-1 ${textClass}`}
-				>
-					{value.details}
+				<div className="flex-1 flex flex-row justify-between gap-1">
+					<div className={`text-xs text-left whitespace-normal ${textClass}`}>
+						{value.details}
+					</div>
+					{value.reference && (
+						<a
+							href={value.reference}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1 w-fit"
+						>
+							<RiExternalLinkLine className="w-3 h-3" />
+						</a>
+					)}
 				</div>
 			)}
 		</div>

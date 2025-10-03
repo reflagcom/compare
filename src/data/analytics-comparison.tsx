@@ -412,6 +412,10 @@ const providers: Provider[] = [
 			userProfiles: { status: "strong", details: "User profiles" },
 			userJourneys: { status: "strong", details: "User flows" },
 			attribution: { status: "strong", details: "Impact analysis" },
+			sessionReplay: {
+				status: "strong",
+				details: "10K replays/mo free, 20K on Growth plan",
+			},
 			abTesting: { status: "none", details: "Not built-in" },
 			featureFlags: { status: "none", details: "Not built-in" },
 			experiments: { status: "none", details: "Via third-party" },
