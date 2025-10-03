@@ -4,9 +4,9 @@
 
 **IMPORTANT**: After editing any files, always run:
 
-1. **Format code**: `npm run format`
-2. **Lint code**: `npm run lint`
-3. **Fix any issues**: `npm run check` (runs both format and lint)
+`npm run check` to fix any linting and formatting issues (runs both format and lint)
+
+DO NOT suggest deploying to cloudflare for each change made. The developer will do that manually when ready.
 
 These commands use Biome for fast formatting and linting.
 

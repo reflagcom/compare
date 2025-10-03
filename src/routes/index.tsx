@@ -2,28 +2,12 @@
 
 import { createFileRoute } from "@tanstack/react-router";
 import {
-	type Column,
-	type ColumnFiltersState,
 	createColumnHelper,
 	flexRender,
 	getCoreRowModel,
-	getFilteredRowModel,
-	getPaginationRowModel,
-	getSortedRowModel,
-	type SortingState,
 	useReactTable,
-	type VisibilityState,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown } from "lucide-react";
-import * as React from "react";
-import { Button } from "@/components/ui/button";
-import {
-	DropdownMenu,
-	DropdownMenuCheckboxItem,
-	DropdownMenuContent,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+import type * as React from "react";
 import {
 	Table,
 	TableBody,
@@ -202,9 +186,9 @@ export const Route = createFileRoute("/")({
 	component: Home,
 });
 
-const data: Provider[] = [
-	{
-		name: "Clerk",
+// Provider data organized by provider name
+const providers = {
+	Clerk: {
 		freeTier: "Yes - 10k MAU",
 		frontendComponents: "React, Next.js, Remix, Astro, Vue",
 		openSource: "No",
@@ -215,8 +199,7 @@ const data: Provider[] = [
 		sessionManagement: "Yes",
 		rbac: "Yes (Pro plan)",
 	},
-	{
-		name: "Auth0",
+	Auth0: {
 		freeTier: "Yes - 7.5k MAU",
 		frontendComponents: "React, Angular, Vue, Native SDKs",
 		openSource: "No",
@@ -227,8 +210,7 @@ const data: Provider[] = [
 		sessionManagement: "Yes",
 		rbac: "Yes",
 	},
-	{
-		name: "Supabase Auth",
+	"Supabase Auth": {
 		freeTier: "Yes - 50k MAU",
 		frontendComponents: "React, Vue, Svelte, SolidJS",
 		openSource: "Yes",
@@ -239,8 +221,7 @@ const data: Provider[] = [
 		sessionManagement: "Yes",
 		rbac: "Yes (Row Level Security)",
 	},
-	{
-		name: "Auth.js (NextAuth)",
+	"Auth.js (NextAuth)": {
 		freeTier: "Yes - Unlimited (self-hosted)",
 		frontendComponents: "Next.js, SvelteKit, Express, Qwik",
 		openSource: "Yes",
@@ -251,8 +232,7 @@ const data: Provider[] = [
 		sessionManagement: "Yes",
 		rbac: "Custom implementation",
 	},
-	{
-		name: "Firebase Auth",
+	"Firebase Auth": {
 		freeTier: "Yes - Unlimited",
 		frontendComponents: "React, Angular, Vue, Flutter, iOS, Android",
 		openSource: "No",
@@ -263,8 +243,7 @@ const data: Provider[] = [
 		sessionManagement: "Yes",
 		rbac: "Via Firebase Security Rules",
 	},
-	{
-		name: "Lucia",
+	Lucia: {
 		freeTier: "Yes - Unlimited (library)",
 		frontendComponents: "Framework agnostic",
 		openSource: "Yes",
@@ -275,8 +254,7 @@ const data: Provider[] = [
 		sessionManagement: "Yes (built-in)",
 		rbac: "Custom implementation",
 	},
-	{
-		name: "WorkOS",
+	WorkOS: {
 		freeTier: "Yes - 1M MAU",
 		frontendComponents: "React, Next.js, Vanilla JS",
 		openSource: "No",
@@ -287,8 +265,7 @@ const data: Provider[] = [
 		sessionManagement: "Yes",
 		rbac: "Yes",
 	},
-	{
-		name: "Keycloak",
+	Keycloak: {
 		freeTier: "Yes - Unlimited (self-hosted)",
 		frontendComponents: "JavaScript, Java, Node.js adapters",
 		openSource: "Yes",
@@ -299,181 +276,77 @@ const data: Provider[] = [
 		sessionManagement: "Yes",
 		rbac: "Yes (built-in)",
 	},
-];
-
-export type Provider = {
-	name: string | React.ReactNode;
-	freeTier: string | React.ReactNode;
-	frontendComponents: string | React.ReactNode;
-	openSource: string | React.ReactNode;
-	oAuth: string | React.ReactNode;
-	mfa: string | React.ReactNode;
-	selfHosted: string | React.ReactNode;
-	paidPricing: string | React.ReactNode;
-	sessionManagement: string | React.ReactNode;
-	rbac: string | React.ReactNode;
 };
 
-const columnHelper = createColumnHelper<Provider>();
-
-// Sortable header component
-const SortableHeader = ({
-	column,
-	children,
-}: {
-	column: Column<Provider>;
-	children: React.ReactNode;
-}) => {
-	return (
-		<Button
-			variant="ghost"
-			onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-			className="p-0 hover:bg-transparent"
-		>
-			{children}
-			<ArrowUpDown className="ml-2 h-4 w-4" />
-		</Button>
-	);
+// Feature labels
+const featureLabels: Record<string, string> = {
+	freeTier: "Free Tier",
+	paidPricing: "Paid Pricing",
+	openSource: "Open Source",
+	selfHosted: "Self-Hosted",
+	mfa: "MFA",
+	rbac: "RBAC",
+	frontendComponents: "Frontend SDKs",
+	oAuth: "OAuth Providers",
+	sessionManagement: "Sessions",
 };
 
+// Transpose data: each row is a feature, each column is a provider
+type FeatureRow = {
+	feature: string;
+	[key: string]: string;
+};
+
+const providerNames = Object.keys(providers);
+const featureKeys = Object.keys(featureLabels);
+
+const data: FeatureRow[] = featureKeys.map((featureKey) => {
+	const row: FeatureRow = {
+		feature: featureLabels[featureKey],
+	};
+
+	providerNames.forEach((providerName) => {
+		row[providerName] =
+			providers[providerName as keyof typeof providers][
+				featureKey as keyof typeof providers.Clerk
+			];
+	});
+
+	return row;
+});
+
+const columnHelper = createColumnHelper<FeatureRow>();
+
+// Create columns: first column for feature names, then one column per provider
 const columns = [
-	columnHelper.accessor("name", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>Name</SortableHeader>
-		),
-		cell: ({ getValue }) => {
-			const name = getValue() as string;
-			return (
-				<div className="flex items-center gap-2">
-					<ProviderLogo name={name} />
-					<span className="font-semibold">{name}</span>
+	columnHelper.accessor("feature", {
+		header: "Feature",
+		cell: ({ getValue }) => <div className="font-semibold">{getValue()}</div>,
+	}),
+	...providerNames.map((providerName) =>
+		columnHelper.accessor(providerName, {
+			header: () => (
+				<div className="flex flex-col items-center gap-3 py-6">
+					<ProviderLogo name={providerName} />
+					<span className="text-lg font-bold text-center">{providerName}</span>
 				</div>
-			);
-		},
-	}),
-	columnHelper.accessor("freeTier", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>Free tier</SortableHeader>
-		),
-		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
-	}),
-	columnHelper.accessor("paidPricing", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>Paid pricing</SortableHeader>
-		),
-		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
-	}),
-	columnHelper.accessor("openSource", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>Open source</SortableHeader>
-		),
-		cell: ({ getValue }) => <div className="lowercase">{getValue()}</div>,
-	}),
-	columnHelper.accessor("selfHosted", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>Self-hosted</SortableHeader>
-		),
-		cell: ({ getValue }) => <div className="lowercase">{getValue()}</div>,
-	}),
-	columnHelper.accessor("mfa", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>MFA</SortableHeader>
-		),
-		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
-	}),
-	columnHelper.accessor("rbac", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>RBAC</SortableHeader>
-		),
-		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
-	}),
-	columnHelper.accessor("frontendComponents", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>Frontend SDKs</SortableHeader>
-		),
-		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
-	}),
-	columnHelper.accessor("oAuth", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>OAuth providers</SortableHeader>
-		),
-		cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
-	}),
-	columnHelper.accessor("sessionManagement", {
-		header: ({ column }) => (
-			<SortableHeader column={column}>Sessions</SortableHeader>
-		),
-		cell: ({ getValue }) => <div className="lowercase">{getValue()}</div>,
-	}),
+			),
+			cell: ({ getValue }) => <div className="text-sm">{getValue()}</div>,
+		}),
+	),
 ];
 
 function Home() {
-	const [sorting, setSorting] = React.useState<SortingState>([]);
-	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-		[],
-	);
-	const [columnVisibility, setColumnVisibility] =
-		React.useState<VisibilityState>({});
-	const [rowSelection, setRowSelection] = React.useState({});
-
 	const table = useReactTable({
 		data,
 		columns,
-		onSortingChange: setSorting,
-		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getFilteredRowModel: getFilteredRowModel(),
-		onColumnVisibilityChange: setColumnVisibility,
-		onRowSelectionChange: setRowSelection,
-		state: {
-			sorting,
-			columnFilters,
-			columnVisibility,
-			rowSelection,
-		},
 	});
 
 	return (
-		<div className="w-full p-2">
-			<div className="flex items-center py-4">
-				<Input
-					placeholder="Find provider..."
-					value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-					onChange={(event) =>
-						table.getColumn("name")?.setFilterValue(event.target.value)
-					}
-					className="max-w-sm"
-				/>
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button variant="outline" className="ml-auto">
-							Columns <ChevronDown />
-						</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end">
-						{table
-							.getAllColumns()
-							.filter((column) => column.getCanHide())
-							.map((column) => {
-								return (
-									<DropdownMenuCheckboxItem
-										key={column.id}
-										className="capitalize"
-										checked={column.getIsVisible()}
-										onCheckedChange={(value) =>
-											column.toggleVisibility(!!value)
-										}
-									>
-										{column.id}
-									</DropdownMenuCheckboxItem>
-								);
-							})}
-					</DropdownMenuContent>
-				</DropdownMenu>
-			</div>
-			<div className="overflow-hidden rounded-md border">
+		<div className="w-full p-8">
+			<h1 className="text-4xl font-bold mb-8">Auth Provider Comparison</h1>
+			<div className="overflow-x-auto rounded-md border">
 				<Table>
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
@@ -496,10 +369,7 @@ function Home() {
 					<TableBody>
 						{table.getRowModel().rows?.length ? (
 							table.getRowModel().rows.map((row) => (
-								<TableRow
-									key={row.id}
-									data-state={row.getIsSelected() && "selected"}
-								>
+								<TableRow key={row.id}>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell key={cell.id}>
 											{flexRender(
@@ -522,30 +392,6 @@ function Home() {
 						)}
 					</TableBody>
 				</Table>
-			</div>
-			<div className="flex items-center justify-end space-x-2 py-4">
-				<div className="text-muted-foreground flex-1 text-sm">
-					{table.getFilteredSelectedRowModel().rows.length} of{" "}
-					{table.getFilteredRowModel().rows.length} row(s) selected.
-				</div>
-				<div className="space-x-2">
-					<Button
-						variant="outline"
-						size="sm"
-						onClick={() => table.previousPage()}
-						disabled={!table.getCanPreviousPage()}
-					>
-						Previous
-					</Button>
-					<Button
-						variant="outline"
-						size="sm"
-						onClick={() => table.nextPage()}
-						disabled={!table.getCanNextPage()}
-					>
-						Next
-					</Button>
-				</div>
 			</div>
 		</div>
 	);
