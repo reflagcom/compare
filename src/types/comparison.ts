@@ -1,11 +1,12 @@
 import type * as React from "react";
 
 // Status types
-export type Status = "strong" | "partial" | "none";
+export type Status = "strong" | "partial" | "none" | "unknown";
 
 export type FeatureValue = {
 	status: Status;
 	details: string;
+	reference?: string; // URL reference for where the information was found
 };
 
 // Provider data structure

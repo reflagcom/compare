@@ -285,24 +285,33 @@ const providers: Provider[] = [
 		tagline: {
 			status: "strong",
 			details: "Modern feature flag platform built for developer experience",
+			reference: "https://reflag.com",
 		},
 		features: {
-			booleanFlags: { status: "strong", details: "Full support" },
+			booleanFlags: {
+				status: "strong",
+				details: "Full support",
+				reference: "https://reflag.com/docs/flags",
+			},
 			multivariateFlags: {
 				status: "strong",
 				details: "Multi-value flags with variants",
+				reference: "https://reflag.com/docs/flags",
 			},
 			jsonFlags: {
 				status: "strong",
 				details: "JSON configuration support",
+				reference: "https://reflag.com/docs/flags",
 			},
 			flagDependencies: {
 				status: "strong",
 				details: "Flag prerequisites & dependencies",
+				reference: "https://reflag.com/docs/flags",
 			},
 			scheduledRollouts: {
 				status: "strong",
 				details: "Time-based scheduled rollouts",
+				reference: "https://reflag.com/docs/rollouts",
 			},
 			userTargeting: {
 				status: "strong",
