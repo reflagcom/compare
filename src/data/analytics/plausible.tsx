@@ -26,67 +26,91 @@ export const plausible: Provider = {
 	logo: <PlausibleLogo />,
 	website: "https://plausible.io",
 	tagline: {
+
 		status: "strong",
+
 		details: "Privacy-first, lightweight analytics",
+
+		reference: "https://plausible.io/pricing",
 	},
 	features: {
-		autoCapture: { status: "strong", details: "Auto-capture pageviews" },
-		customEvents: { status: "strong", details: "Custom events" },
-		userProperties: { status: "none", details: "Not available" },
-		groupAnalytics: { status: "none", details: "Not available" },
+		autoCapture: { status: "strong", details: "Auto-capture pageviews", reference: "https://plausible.io/pricing" },
+		customEvents: { status: "strong", details: "Custom events", reference: "https://plausible.io/pricing" },
+		userProperties: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		groupAnalytics: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
 		retroactiveAnalysis: {
+
 			status: "none",
+
 			details: "Not available",
+
+			reference: "https://plausible.io/pricing",
 		},
-		funnels: { status: "strong", details: "Funnel analysis" },
-		retention: { status: "none", details: "Not available" },
-		cohorts: { status: "none", details: "Not available" },
-		pathAnalysis: { status: "none", details: "Not available" },
-		trends: { status: "strong", details: "Traffic trends" },
-		dashboards: { status: "strong", details: "Single dashboard" },
-		realtime: { status: "strong", details: "Real-time visitors" },
-		customReports: { status: "partial", details: "Saved filters" },
+		funnels: { status: "strong", details: "Funnel analysis", reference: "https://plausible.io/pricing" },
+		retention: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		cohorts: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		pathAnalysis: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		trends: { status: "strong", details: "Traffic trends", reference: "https://plausible.io/pricing" },
+		dashboards: { status: "strong", details: "Single dashboard", reference: "https://plausible.io/pricing" },
+		realtime: { status: "strong", details: "Real-time visitors", reference: "https://plausible.io/pricing" },
+		customReports: { status: "partial", details: "Saved filters", reference: "https://plausible.io/pricing" },
 		dataExploration: {
+
 			status: "partial",
+
 			details: "Simple filtering",
+
+			reference: "https://plausible.io/pricing",
 		},
-		alerts: { status: "strong", details: "Traffic spike alerts" },
-		sessionReplay: { status: "none", details: "Not available" },
-		heatmaps: { status: "none", details: "Not available" },
-		userProfiles: { status: "none", details: "Not available" },
-		userJourneys: { status: "none", details: "Not available" },
-		attribution: { status: "strong", details: "UTM tracking" },
-		abTesting: { status: "none", details: "Not available" },
-		featureFlags: { status: "none", details: "Not available" },
-		experiments: { status: "none", details: "Not available" },
+		alerts: { status: "strong", details: "Traffic spike alerts", reference: "https://plausible.io/pricing" },
+		sessionReplay: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		heatmaps: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		userProfiles: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		userJourneys: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		attribution: { status: "strong", details: "UTM tracking", reference: "https://plausible.io/pricing" },
+		abTesting: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		featureFlags: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		experiments: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
 		statisticalAnalysis: {
+
 			status: "none",
+
 			details: "Not available",
+
+			reference: "https://plausible.io/pricing",
 		},
 		sdkLanguages: {
+
 			status: "partial",
+
 			details: "JS script + community SDKs",
+
+			reference: "https://plausible.io/docs",
 		},
-		apiAccess: { status: "strong", details: "Stats & Events API" },
-		dataWarehouse: { status: "none", details: "Not available" },
-		sqlAccess: { status: "none", details: "Not available" },
-		documentation: { status: "strong", details: "Clear docs" },
-		gdprCompliant: { status: "strong", details: "GDPR by default" },
-		cookieless: { status: "strong", details: "Cookieless tracking" },
-		dataResidency: { status: "strong", details: "EU, US options" },
-		anonymization: { status: "strong", details: "No PII collected" },
-		compliance: { status: "strong", details: "GDPR, CCPA, PECR" },
-		freeTier: { status: "none", details: "No free tier" },
+		apiAccess: { status: "strong", details: "Stats & Events API", reference: "https://plausible.io/docs" },
+		dataWarehouse: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		sqlAccess: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		documentation: { status: "strong", details: "Clear docs", reference: "https://plausible.io/docs" },
+		gdprCompliant: { status: "strong", details: "GDPR by default", reference: "https://plausible.io/privacy" },
+		cookieless: { status: "strong", details: "Cookieless tracking", reference: "https://plausible.io/privacy" },
+		dataResidency: { status: "strong", details: "EU, US options", reference: "https://plausible.io/privacy" },
+		anonymization: { status: "strong", details: "No PII collected", reference: "https://plausible.io/privacy" },
+		compliance: { status: "strong", details: "GDPR, CCPA, PECR", reference: "https://plausible.io/privacy" },
+		freeTier: { status: "none", details: "No free tier", reference: "https://plausible.io/pricing" },
 		pricingModel: {
+
 			status: "strong",
+
 			details: "$9/mo for 10K pageviews",
+
+			reference: "https://plausible.io/pricing",
 		},
-		openSource: { status: "strong", details: "AGPLv3 license" },
-		selfHosted: { status: "strong", details: "Self-hosted option" },
-		cloudHosted: { status: "strong", details: "Managed cloud" },
-		cdp: { status: "none", details: "Not available" },
-		marketing: { status: "partial", details: "Limited integrations" },
-		datatools: { status: "none", details: "Not available" },
-		webhooks: { status: "none", details: "Not available" },
+		openSource: { status: "strong", details: "AGPLv3 license", reference: "https://plausible.io/pricing" },
+		selfHosted: { status: "strong", details: "Self-hosted option", reference: "https://plausible.io/pricing" },
+		cloudHosted: { status: "strong", details: "Managed cloud", reference: "https://plausible.io/pricing" },
+		cdp: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		marketing: { status: "partial", details: "Limited integrations", reference: "https://plausible.io/pricing" },
+		datatools: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
+		webhooks: { status: "none", details: "Not available", reference: "https://plausible.io/pricing" },
 	},
 };

@@ -19,96 +19,184 @@ export const authjs: Provider = {
 	logo: <AuthJsLogo />,
 	website: "https://authjs.dev",
 	tagline: {
+
 		status: "strong",
+
 		details: "Free and open source authentication for the web",
+
+		reference: "https://authjs.dev",
 	},
 	features: {
 		emailPassword: {
+
 			status: "strong",
+
 			details: "Credentials provider with custom logic",
+
+			reference: "https://authjs.dev",
 		},
-		passwordless: { status: "strong", details: "Email magic links built-in" },
+		passwordless: { status: "strong", details: "Email magic links built-in", reference: "https://authjs.dev" },
 		socialLogins: {
+
 			status: "strong",
+
 			details: "80+ built-in OAuth providers",
+
+			reference: "https://authjs.dev",
 		},
 		enterpriseSSO: {
+
 			status: "partial",
+
 			details: "Via custom providers (SAML, OIDC possible)",
+
+			reference: "https://authjs.dev",
 		},
 		passkeys: {
+
 			status: "partial",
+
 			details: "Via SimpleWebAuthn or custom implementation",
+
+			reference: "https://authjs.dev",
 		},
 		mfa: {
+
 			status: "partial",
+
 			details: "Custom implementation via callbacks",
+
+			reference: "https://authjs.dev",
 		},
 		rbac: {
+
 			status: "partial",
+
 			details: "Build your own with session callbacks",
+
+			reference: "https://authjs.dev",
 		},
 		userProfiles: {
+
 			status: "partial",
+
 			details: "Store in your own database",
+
+			reference: "https://authjs.dev",
 		},
 		organizations: {
+
 			status: "partial",
+
 			details: "Build your own with custom logic",
+
+			reference: "https://authjs.dev",
 		},
 		frontendSDKs: {
+
 			status: "strong",
+
 			details: "Next.js, SvelteKit, SolidStart, Express",
+
+			reference: "https://authjs.dev/getting-started/introduction",
 		},
 		prebuiltUI: {
+
 			status: "partial",
+
 			details: "Basic sign-in pages (customizable)",
+
+			reference: "https://authjs.dev",
 		},
 		documentation: {
+
 			status: "strong",
+
 			details: "Good docs with many examples",
+
+			reference: "https://authjs.dev/getting-started/introduction",
 		},
 		apiApproach: {
+
 			status: "strong",
+
 			details: "Framework-integrated API routes",
+
+			reference: "https://authjs.dev/getting-started/introduction",
 		},
 		sessionManagement: {
+
 			status: "strong",
+
 			details: "JWT or database sessions with rotation",
+
+			reference: "https://authjs.dev",
 		},
 		jwtSupport: {
+
 			status: "strong",
+
 			details: "JWT with custom claims via callbacks",
+
+			reference: "https://authjs.dev",
 		},
 		compliance: {
+
 			status: "partial",
+
 			details: "Your responsibility (self-hosted)",
+
+			reference: "https://authjs.dev",
 		},
 		rateLimiting: {
+
 			status: "partial",
+
 			details: "Implement via middleware or proxies",
+
+			reference: "https://authjs.dev",
 		},
 		freeTier: {
+
 			status: "strong",
+
 			details: "Unlimited (self-hosted, open source)",
+
+			reference: "https://authjs.dev",
 		},
-		paidPricing: { status: "none", details: "Free forever" },
-		openSource: { status: "strong", details: "ISC License (MIT-compatible)" },
+		paidPricing: { status: "none", details: "Free forever", reference: "https://authjs.dev" },
+		openSource: { status: "strong", details: "ISC License (MIT-compatible)", reference: "https://authjs.dev" },
 		selfHosted: {
+
 			status: "strong",
+
 			details: "Required (runs on your infrastructure)",
+
+			reference: "https://authjs.dev",
 		},
 		oauthProviders: {
+
 			status: "strong",
+
 			details: "80+ providers (Google, GitHub, Apple, etc.)",
+
+			reference: "https://authjs.dev",
 		},
 		webhooks: {
+
 			status: "partial",
+
 			details: "Build your own with event callbacks",
+
+			reference: "https://authjs.dev",
 		},
 		thirdPartyIntegrations: {
+
 			status: "partial",
+
 			details: "Community adapters for various databases",
+
+			reference: "https://authjs.dev",
 		},
 	},
 };

@@ -19,94 +19,177 @@ export const firebase: Provider = {
 	logo: <FirebaseLogo />,
 	website: "https://firebase.google.com/products/auth",
 	tagline: {
+
 		status: "strong",
-		details:
-			"Simple, multi-platform sign-in with backend services and ready-made UI",
+
+		details: "Simple, multi-platform sign-in with backend services and ready-made UI",
+
+		reference: "https://firebase.google.com/pricing",
 	},
 	features: {
 		emailPassword: {
+
 			status: "strong",
+
 			details: "Email + password with verification links",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		passwordless: {
+
 			status: "strong",
+
 			details: "Email links & anonymous auth",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		socialLogins: {
+
 			status: "strong",
+
 			details: "Google, Facebook, Apple, Microsoft, GitHub, Twitter",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		enterpriseSSO: {
+
 			status: "strong",
+
 			details: "SAML & OIDC (Identity Platform)",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		passkeys: {
+
 			status: "partial",
+
 			details: "Via Firebase Extensions or custom",
+
+			reference: "https://firebase.google.com/pricing",
 		},
-		mfa: { status: "strong", details: "SMS, TOTP (Google Authenticator)" },
-		rbac: { status: "partial", details: "Custom claims + Security Rules" },
+		mfa: { status: "strong", details: "SMS, TOTP (Google Authenticator)", reference: "https://firebase.google.com/pricing" },
+		rbac: { status: "partial", details: "Custom claims + Security Rules", reference: "https://firebase.google.com/pricing" },
 		userProfiles: {
+
 			status: "partial",
+
 			details: "Store in Firestore with custom logic",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		organizations: {
+
 			status: "partial",
+
 			details: "Build with Firestore & Security Rules",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		frontendSDKs: {
+
 			status: "strong",
+
 			details: "Web, iOS, Android, Flutter, Unity, C++",
+
+			reference: "https://firebase.google.com/docs/auth",
 		},
 		prebuiltUI: {
+
 			status: "strong",
+
 			details: "FirebaseUI for Web, iOS, Android",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		documentation: {
+
 			status: "strong",
+
 			details: "Excellent docs with video courses",
+
+			reference: "https://firebase.google.com/docs/auth",
 		},
 		apiApproach: {
+
 			status: "strong",
+
 			details: "Client SDKs + Admin SDK for backend",
+
+			reference: "https://firebase.google.com/docs/auth",
 		},
 		sessionManagement: {
+
 			status: "strong",
+
 			details: "ID tokens with automatic refresh",
+
+			reference: "https://firebase.google.com/pricing",
 		},
-		jwtSupport: { status: "strong", details: "Firebase ID tokens (JWTs)" },
+		jwtSupport: { status: "strong", details: "Firebase ID tokens (JWTs)", reference: "https://firebase.google.com/pricing" },
 		compliance: {
+
 			status: "strong",
+
 			details: "SOC 2, SOC 3, ISO 27001, GDPR",
+
+			reference: "https://policies.google.com/privacy",
 		},
 		rateLimiting: {
+
 			status: "strong",
+
 			details: "App Check + Cloud Armor integration",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		freeTier: {
+
 			status: "strong",
+
 			details: "Unlimited auth users (no MAU limits)",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		paidPricing: {
+
 			status: "partial",
+
 			details: "Free auth; phone SMS $0.06/verification",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		openSource: {
+
 			status: "none",
+
 			details: "Proprietary (Firebase Emulators for dev)",
+
+			reference: "https://firebase.google.com/pricing",
 		},
-		selfHosted: { status: "none", details: "Cloud-only Google service" },
+		selfHosted: { status: "none", details: "Cloud-only Google service", reference: "https://firebase.google.com/pricing" },
 		oauthProviders: {
+
 			status: "strong",
+
 			details: "6+ social + custom OAuth/SAML",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		webhooks: {
+
 			status: "partial",
+
 			details: "Cloud Functions triggers for auth events",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 		thirdPartyIntegrations: {
+
 			status: "strong",
+
 			details: "Google ecosystem + Firebase Extensions",
+
+			reference: "https://firebase.google.com/pricing",
 		},
 	},
 };

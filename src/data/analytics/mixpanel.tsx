@@ -22,8 +22,12 @@ export const mixpanel: Provider = {
 	logo: <MixpanelLogo />,
 	website: "https://mixpanel.com",
 	tagline: {
+
 		status: "strong",
+
 		details: "Product analytics for mobile and web applications",
+
+		reference: "",
 	},
 	features: {
 		autoCapture: { 
