@@ -279,6 +279,7 @@ const providers: Provider[] = [
 		name: "PostHog",
 		logo: <PostHogLogo />,
 		website: "https://posthog.com",
+		verificationUrl: "https://posthog.com/pricing",
 		tagline: {
 			status: "strong",
 			details: "All-in-one product OS with analytics, session replay, and more",
@@ -378,6 +379,7 @@ const providers: Provider[] = [
 		name: "Mixpanel",
 		logo: <MixpanelLogo />,
 		website: "https://mixpanel.com",
+		verificationUrl: "https://mixpanel.com/pricing",
 		tagline: {
 			status: "strong",
 			details: "Product analytics for mobile and web applications",
@@ -459,6 +461,7 @@ const providers: Provider[] = [
 		name: "Amplitude",
 		logo: <AmplitudeLogo />,
 		website: "https://amplitude.com",
+		verificationUrl: "https://amplitude.com/pricing",
 		tagline: {
 			status: "strong",
 			details: "Digital analytics platform for product teams",
@@ -537,6 +540,7 @@ const providers: Provider[] = [
 		name: "Heap",
 		logo: <HeapLogo />,
 		website: "https://heap.io",
+		verificationUrl: "https://heap.io/pricing",
 		tagline: {
 			status: "strong",
 			details: "Digital insights platform with auto-capture",
@@ -609,6 +613,7 @@ const providers: Provider[] = [
 		name: "Google Analytics 4",
 		logo: <GoogleAnalyticsLogo />,
 		website: "https://analytics.google.com",
+		verificationUrl: "https://support.google.com/analytics/answer/9306384",
 		tagline: {
 			status: "strong",
 			details: "Free web analytics from Google with ML insights",
@@ -702,6 +707,7 @@ const providers: Provider[] = [
 		name: "Pendo",
 		logo: <PendoLogo />,
 		website: "https://pendo.io",
+		verificationUrl: "https://www.pendo.io/pricing",
 		tagline: {
 			status: "strong",
 			details: "Product experience platform with analytics and guidance",
@@ -768,6 +774,7 @@ const providers: Provider[] = [
 		name: "Segment",
 		logo: <SegmentLogo />,
 		website: "https://segment.com",
+		verificationUrl: "https://segment.com/pricing",
 		tagline: {
 			status: "strong",
 			details: "Customer data platform with analytics capabilities",
@@ -852,6 +859,7 @@ const providers: Provider[] = [
 		name: "Plausible",
 		logo: <PlausibleLogo />,
 		website: "https://plausible.io",
+		verificationUrl: "https://plausible.io/pricing",
 		tagline: {
 			status: "strong",
 			details: "Privacy-first, lightweight, open source web analytics",

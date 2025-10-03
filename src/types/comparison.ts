@@ -13,6 +13,7 @@ export type Provider = {
 	name: string;
 	logo: React.ReactNode;
 	website: string;
+	verificationUrl?: string; // URL where pricing/feature information was verified
 	tagline: FeatureValue;
 	features: Record<string, FeatureValue>;
 };

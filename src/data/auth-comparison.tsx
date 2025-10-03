@@ -260,6 +260,7 @@ const providers: Provider[] = [
 		name: "Clerk",
 		logo: <ClerkLogo />,
 		website: "https://clerk.com",
+		verificationUrl: "https://clerk.com/pricing",
 		tagline: {
 			status: "strong",
 			details:
@@ -353,6 +354,7 @@ const providers: Provider[] = [
 		name: "Auth0",
 		logo: <Auth0Logo />,
 		website: "https://auth0.com",
+		verificationUrl: "https://auth0.com/pricing",
 		tagline: {
 			status: "strong",
 			details:
@@ -443,6 +445,7 @@ const providers: Provider[] = [
 		name: "Supabase Auth",
 		logo: <SupabaseLogo />,
 		website: "https://supabase.com/auth",
+		verificationUrl: "https://supabase.com/pricing",
 		tagline: {
 			status: "strong",
 			details: "Open source auth with PostgreSQL Row Level Security",
@@ -535,6 +538,7 @@ const providers: Provider[] = [
 		name: "Auth.js (NextAuth)",
 		logo: <AuthJsLogo />,
 		website: "https://authjs.dev",
+		verificationUrl: "https://authjs.dev/getting-started/introduction",
 		tagline: {
 			status: "strong",
 			details: "Free and open source authentication for the web",
@@ -633,6 +637,7 @@ const providers: Provider[] = [
 		name: "Firebase Auth",
 		logo: <FirebaseLogo />,
 		website: "https://firebase.google.com/products/auth",
+		verificationUrl: "https://firebase.google.com/pricing",
 		tagline: {
 			status: "strong",
 			details:
@@ -729,6 +734,7 @@ const providers: Provider[] = [
 		name: "Lucia",
 		logo: <LuciaLogo />,
 		website: "https://lucia-auth.com",
+		verificationUrl: "https://lucia-auth.com",
 		tagline: {
 			status: "strong",
 			details:
@@ -807,6 +813,7 @@ const providers: Provider[] = [
 		name: "WorkOS",
 		logo: <WorkOSLogo />,
 		website: "https://workos.com",
+		verificationUrl: "https://workos.com/pricing",
 		tagline: {
 			status: "strong",
 			details:
@@ -882,6 +889,7 @@ const providers: Provider[] = [
 		name: "Keycloak",
 		logo: <KeycloakLogo />,
 		website: "https://www.keycloak.org",
+		verificationUrl: "https://www.keycloak.org/documentation",
 		tagline: {
 			status: "strong",
 			details:
