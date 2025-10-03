@@ -8,11 +8,11 @@ import {
 	useReactTable,
 } from "@tanstack/react-table";
 import type * as React from "react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import RiCheckboxCircleFill from "remixicon-react/CheckboxCircleFillIcon";
 import RiCloseCircleFill from "remixicon-react/CloseLineIcon";
 import RiErrorWarningLine from "remixicon-react/ErrorWarningLineIcon";
-import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import {
 	Table,
 	TableBody,
@@ -460,6 +460,7 @@ const columnHelper = createColumnHelper<FeatureRow>();
 
 function Home() {
 	const [showExpandedContent, setShowExpandedContent] = useState(false);
+	const switchId = useId();
 
 	// Create columns: first column for feature names, then one column per provider
 	const columns = [
@@ -543,12 +544,16 @@ function Home() {
 		<div className="w-full h-screen flex flex-col">
 			<div className="flex items-center justify-between p-2 border-b-1 flex-shrink-0">
 				<h1 className="text-xl font-bold">Compare auth provider</h1>
-				<Button
-					onClick={() => setShowExpandedContent(!showExpandedContent)}
-					variant={showExpandedContent ? "default" : "outline"}
-				>
-					{showExpandedContent ? "Hide" : "Show"} Details
-				</Button>
+				<div className="flex items-center gap-2">
+					<label htmlFor="show-details" className="text-sm font-medium">
+						Show details
+					</label>
+					<Switch
+						id={switchId}
+						checked={showExpandedContent}
+						onCheckedChange={setShowExpandedContent}
+					/>
+				</div>
 			</div>
 			<div className="overflow-auto flex-1">
 				<Table>
