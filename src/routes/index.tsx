@@ -12,6 +12,7 @@ import { useId, useState } from "react";
 import RiCheckboxCircleFill from "remixicon-react/CheckboxCircleFillIcon";
 import RiCloseCircleFill from "remixicon-react/CloseLineIcon";
 import RiErrorWarningLine from "remixicon-react/ErrorWarningLineIcon";
+import RiShieldKeyholeFill from "remixicon-react/ShieldKeyholeFillIcon";
 import { Switch } from "@/components/ui/switch";
 import {
 	TableBody,
@@ -1228,10 +1229,16 @@ function Home() {
 	return (
 		<div className="w-full h-screen flex flex-col">
 			<div className="flex items-center justify-between p-2 border-b-1 flex-shrink-0">
-				<h1 className="text-xl font-bold">Compare auth provider</h1>
+				<div className="flex items-center gap-1.5">
+					<RiShieldKeyholeFill className="w-4 h-4 mt-0.5" />
+					<h1 className="text-lg font-medium">auth.compare</h1>
+					<span className="text-xs text-muted-foreground">
+						⋅ Auth providers comparison matrix
+					</span>
+				</div>
 				<div className="flex items-center gap-2">
-					<label htmlFor="show-details" className="text-sm font-medium">
-						Show details
+					<label htmlFor={switchId} className="text-sm font-medium">
+						Expand details
 					</label>
 					<Switch
 						id={switchId}
@@ -1333,9 +1340,9 @@ function Home() {
 					</TableBody>
 				</table>
 			</div>
-			<footer className="border-t bg-background p-3 text-sm text-muted-foreground flex-shrink-0">
+			<footer className="border-t bg-background p-3 text-xs text-muted-foreground flex-shrink-0">
 				<div className="flex items-center gap-2">
-					<span>Made by</span>
+					<span>Made by the team at</span>
 					<a
 						href="https://reflag.com"
 						target="_blank"
@@ -1343,8 +1350,8 @@ function Home() {
 						className="font-semibold hover:text-foreground transition-colors flex items-center gap-1.5"
 					>
 						<svg
-							width="14"
-							height="14"
+							width="12"
+							height="12"
 							viewBox="0 0 128 128"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
