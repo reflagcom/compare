@@ -4,9 +4,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ComparisonTable } from "../components/ComparisonTable";
 import { SITE } from "../config/site";
 // Import all site comparison configs
-import { analyticsComparisonConfig } from "../data/analytics-comparison";
-import { authComparisonConfig } from "../data/auth-comparison";
-import { featureFlagsComparisonConfig } from "../data/featureflags-comparison";
+import { analyticsComparisonConfig } from "../data/analytics";
+import { authComparisonConfig } from "../data/auth";
+import { featureFlagsComparisonConfig } from "../data/featureflags";
 import type { ComparisonConfig } from "../types/comparison";
 
 // Map of site types to their configs
