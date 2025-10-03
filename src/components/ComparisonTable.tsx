@@ -7,7 +7,7 @@ import {
 	useReactTable,
 } from "@tanstack/react-table";
 import type * as React from "react";
-import { useId, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import RiCheckboxCircleFill from "remixicon-react/CheckboxCircleFillIcon";
 import RiCloseCircleFill from "remixicon-react/CloseLineIcon";
 import RiErrorWarningLine from "remixicon-react/ErrorWarningLineIcon";
@@ -99,53 +99,58 @@ function ComparisonTable({ config }: ComparisonTableProps) {
 	const [isScrolledHorizontally, setIsScrolledHorizontally] = useState(false);
 	const switchId = useId();
 
-	// Build providers lookup
-	const providersByName: Record<string, (typeof config.providers)[0]> = {};
-	for (const provider of config.providers) {
-		providersByName[provider.name] = provider;
-	}
-	const providerNames = config.providers.map((p) => p.name);
-
-	// Build data with category headers
-	const data: FeatureRow[] = [];
-
-	// Add tagline as a standalone first row (no category header)
-	const taglineRow: FeatureRow = {
-		feature: "",
-		featureKey: "tagline",
-		isCategory: false,
-	};
-	for (const providerName of providerNames) {
-		taglineRow[providerName] = providersByName[providerName].tagline;
-	}
-	data.push(taglineRow);
-
-	// Add categories and features
-	for (const category of config.categories) {
-		// Add category header row
-		data.push({
-			feature: category.label,
-			categoryIcon: category.icon,
-			isCategory: true,
-		});
-
-		// Add feature rows for this category
-		for (const [featureKey, featureLabel] of Object.entries(
-			category.features,
-		)) {
-			const row: FeatureRow = {
-				feature: featureLabel,
-				featureKey: featureKey,
-				isCategory: false,
-			};
-
-			for (const providerName of providerNames) {
-				row[providerName] = providersByName[providerName].features[featureKey];
-			}
-
-			data.push(row);
+	// Build providers lookup - memoized to avoid recreating on every render
+	const { providersByName, providerNames, data } = useMemo(() => {
+		const providersByName: Record<string, (typeof config.providers)[0]> = {};
+		for (const provider of config.providers) {
+			providersByName[provider.name] = provider;
 		}
-	}
+		const providerNames = config.providers.map((p) => p.name);
+
+		// Build data with category headers
+		const data: FeatureRow[] = [];
+
+		// Add tagline as a standalone first row (no category header)
+		const taglineRow: FeatureRow = {
+			feature: "",
+			featureKey: "tagline",
+			isCategory: false,
+		};
+		for (const providerName of providerNames) {
+			taglineRow[providerName] = providersByName[providerName].tagline;
+		}
+		data.push(taglineRow);
+
+		// Add categories and features
+		for (const category of config.categories) {
+			// Add category header row
+			data.push({
+				feature: category.label,
+				categoryIcon: category.icon,
+				isCategory: true,
+			});
+
+			// Add feature rows for this category
+			for (const [featureKey, featureLabel] of Object.entries(
+				category.features,
+			)) {
+				const row: FeatureRow = {
+					feature: featureLabel,
+					featureKey: featureKey,
+					isCategory: false,
+				};
+
+				for (const providerName of providerNames) {
+					row[providerName] =
+						providersByName[providerName].features[featureKey];
+				}
+
+				data.push(row);
+			}
+		}
+
+		return { providersByName, providerNames, data };
+	}, [config]);
 
 	// Handle scroll to show/hide sticky borders
 	const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {

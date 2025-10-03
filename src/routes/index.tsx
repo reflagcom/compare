@@ -5,16 +5,16 @@ import { ComparisonTable } from "../components/ComparisonTable";
 import { SITE } from "../config/site";
 // Import all site comparison configs
 import { authComparisonConfig } from "../data/auth-comparison";
+import { featureFlagsComparisonConfig } from "../data/featureflags-comparison";
 import type { ComparisonConfig } from "../types/comparison";
 
 // TODO: Add these as you create them:
-// import { featureFlagsComparisonConfig } from "../data/featureflags-comparison";
 // import { analyticsComparisonConfig } from "../data/analytics-comparison";
 
 // Map of site types to their configs
 const siteConfigs: Record<string, ComparisonConfig> = {
 	auth: authComparisonConfig,
-	// featureflags: featureFlagsComparisonConfig,
+	featureflags: featureFlagsComparisonConfig,
 	// analytics: analyticsComparisonConfig,
 };
 
