@@ -59,90 +59,170 @@ export const supabase: Provider = {
 	logo: <SupabaseLogo />,
 	website: "https://supabase.com/auth",
 	tagline: {
+
 		status: "strong",
+
 		details: "Open source auth with PostgreSQL Row Level Security",
+
+		reference: "https://supabase.com/pricing",
 	},
 	features: {
 		emailPassword: {
+
 			status: "strong",
+
 			details: "Email + password with confirmation",
+
+			reference: "https://supabase.com/pricing",
 		},
-		passwordless: { status: "strong", details: "Magic links via email" },
+		passwordless: { status: "strong", details: "Magic links via email", reference: "https://supabase.com/pricing" },
 		socialLogins: {
+
 			status: "strong",
+
 			details: "Google, GitHub, GitLab, Slack, 10+ providers",
+
+			reference: "https://supabase.com/pricing",
 		},
 		enterpriseSSO: {
+
 			status: "partial",
+
 			details: "SAML (Enterprise plan only)",
+
+			reference: "https://supabase.com/pricing",
 		},
-		passkeys: { status: "partial", details: "Experimental WebAuthn support" },
-		mfa: { status: "strong", details: "TOTP authenticator apps" },
+		passkeys: { status: "partial", details: "Experimental WebAuthn support", reference: "https://supabase.com/pricing" },
+		mfa: { status: "strong", details: "TOTP authenticator apps", reference: "https://supabase.com/pricing" },
 		rbac: {
+
 			status: "strong",
+
 			details: "Row Level Security (RLS) with PostgreSQL policies",
+
+			reference: "https://supabase.com/pricing",
 		},
 		userProfiles: {
+
 			status: "strong",
+
 			details: "Stored in users table with custom fields",
+
+			reference: "https://supabase.com/pricing",
 		},
 		organizations: {
+
 			status: "partial",
+
 			details: "Build your own with RLS policies",
+
+			reference: "https://supabase.com/pricing",
 		},
 		frontendSDKs: {
+
 			status: "strong",
+
 			details: "JavaScript, React, Vue, Svelte, Angular, Flutter",
+
+			reference: "https://supabase.com/docs/guides/auth",
 		},
 		prebuiltUI: {
+
 			status: "strong",
+
 			details: "Auth UI library with customizable components",
+
+			reference: "https://supabase.com/pricing",
 		},
 		documentation: {
+
 			status: "strong",
+
 			details: "Excellent docs with video tutorials",
+
+			reference: "https://supabase.com/docs/guides/auth",
 		},
 		apiApproach: {
+
 			status: "strong",
+
 			details: "RESTful + Realtime + GraphQL (pg_graphql)",
+
+			reference: "https://supabase.com/docs/guides/auth",
 		},
 		sessionManagement: {
+
 			status: "strong",
+
 			details: "JWT with refresh tokens & auto-refresh",
+
+			reference: "https://supabase.com/pricing",
 		},
 		jwtSupport: {
+
 			status: "strong",
+
 			details: "JWTs with custom claims via PostgreSQL functions",
+
+			reference: "https://supabase.com/pricing",
 		},
 		compliance: {
+
 			status: "strong",
+
 			details: "SOC 2 Type II, GDPR, HIPAA (Enterprise)",
+
+			reference: "https://supabase.com/privacy",
 		},
 		rateLimiting: {
+
 			status: "strong",
+
 			details: "Built-in rate limiting per endpoint",
+
+			reference: "https://supabase.com/pricing",
 		},
-		freeTier: { status: "strong", details: "50,000 MAU" },
-		paidPricing: { status: "strong", details: "$25/mo + $0.00325/MAU" },
+		freeTier: { status: "strong", details: "50,000 MAU", reference: "https://supabase.com/pricing" },
+		paidPricing: { status: "strong", details: "$25/mo + $0.00325/MAU", reference: "https://supabase.com/pricing" },
 		openSource: {
+
 			status: "strong",
+
 			details: "MIT License (fully open source)",
+
+			reference: "https://supabase.com/pricing",
 		},
 		selfHosted: {
+
 			status: "strong",
+
 			details: "Docker self-hosting available",
+
+			reference: "https://supabase.com/pricing",
 		},
 		oauthProviders: {
+
 			status: "strong",
+
 			details: "10+ providers with custom OAuth",
+
+			reference: "https://supabase.com/pricing",
 		},
 		webhooks: {
+
 			status: "strong",
+
 			details: "Database webhooks via pg_net or Edge Functions",
+
+			reference: "https://supabase.com/pricing",
 		},
 		thirdPartyIntegrations: {
+
 			status: "partial",
+
 			details: "Growing ecosystem with partner integrations",
+
+			reference: "https://supabase.com/pricing",
 		},
 	},
 };

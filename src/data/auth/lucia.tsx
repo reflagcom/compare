@@ -30,75 +30,135 @@ export const lucia: Provider = {
 	logo: <LuciaLogo />,
 	website: "https://lucia-auth.com",
 	tagline: {
+
 		status: "strong",
+
 		details: "Open source library to implement authentication using JavaScript",
+
+		reference: "https://lucia-auth.com",
 	},
 	features: {
 		emailPassword: {
+
 			status: "strong",
+
 			details: "Build your own with database",
+
+			reference: "https://lucia-auth.com",
 		},
 		passwordless: {
+
 			status: "partial",
+
 			details: "Implement yourself with email service",
+
+			reference: "https://lucia-auth.com",
 		},
 		socialLogins: {
+
 			status: "strong",
+
 			details: "Arctic library: 50+ OAuth providers",
+
+			reference: "https://lucia-auth.com",
 		},
 		enterpriseSSO: {
+
 			status: "partial",
+
 			details: "Custom SAML/OIDC implementation needed",
+
+			reference: "https://lucia-auth.com",
 		},
-		passkeys: { status: "partial", details: "Use SimpleWebAuthn library" },
-		mfa: { status: "partial", details: "Build your own TOTP/SMS logic" },
+		passkeys: { status: "partial", details: "Use SimpleWebAuthn library", reference: "https://lucia-auth.com" },
+		mfa: { status: "partial", details: "Build your own TOTP/SMS logic", reference: "https://lucia-auth.com" },
 		rbac: {
+
 			status: "partial",
+
 			details: "Implement with your database schema",
+
+			reference: "https://lucia-auth.com",
 		},
 		userProfiles: {
+
 			status: "partial",
+
 			details: "Your database, your schema",
+
+			reference: "https://lucia-auth.com",
 		},
-		organizations: { status: "partial", details: "Build from scratch" },
+		organizations: { status: "partial", details: "Build from scratch", reference: "https://lucia-auth.com" },
 		frontendSDKs: {
+
 			status: "partial",
+
 			details: "Framework-agnostic TypeScript library",
+
+			reference: "https://lucia-auth.com",
 		},
-		prebuiltUI: { status: "none", details: "No pre-built UI (you build it)" },
-		documentation: { status: "strong", details: "Clear docs with examples" },
-		apiApproach: { status: "strong", details: "Session-based auth library" },
+		prebuiltUI: { status: "none", details: "No pre-built UI (you build it)", reference: "https://lucia-auth.com" },
+		documentation: { status: "strong", details: "Clear docs with examples", reference: "https://lucia-auth.com" },
+		apiApproach: { status: "strong", details: "Session-based auth library", reference: "https://lucia-auth.com" },
 		sessionManagement: {
+
 			status: "strong",
+
 			details: "Secure database-backed sessions",
+
+			reference: "https://lucia-auth.com",
 		},
 		jwtSupport: {
+
 			status: "partial",
+
 			details: "Use jose or other JWT library",
+
+			reference: "https://lucia-auth.com",
 		},
 		compliance: {
+
 			status: "partial",
+
 			details: "Your responsibility (self-implemented)",
+
+			reference: "https://lucia-auth.com",
 		},
-		rateLimiting: { status: "partial", details: "Implement via middleware" },
+		rateLimiting: { status: "partial", details: "Implement via middleware", reference: "https://lucia-auth.com" },
 		freeTier: {
+
 			status: "strong",
+
 			details: "Unlimited (library, not a service)",
+
+			reference: "https://lucia-auth.com",
 		},
-		paidPricing: { status: "none", details: "Free forever (MIT license)" },
-		openSource: { status: "strong", details: "MIT License (fully open)" },
+		paidPricing: { status: "none", details: "Free forever (MIT license)", reference: "https://lucia-auth.com" },
+		openSource: { status: "strong", details: "MIT License (fully open)", reference: "https://lucia-auth.com" },
 		selfHosted: {
+
 			status: "strong",
+
 			details: "Required (TypeScript library)",
+
+			reference: "https://lucia-auth.com",
 		},
 		oauthProviders: {
+
 			status: "strong",
+
 			details: "Arctic: 50+ OAuth providers",
+
+			reference: "https://lucia-auth.com",
 		},
-		webhooks: { status: "partial", details: "Build your own event system" },
+		webhooks: { status: "partial", details: "Build your own event system", reference: "https://lucia-auth.com" },
 		thirdPartyIntegrations: {
+
 			status: "none",
+
 			details: "Minimal (DIY approach)",
+
+			reference: "https://lucia-auth.com",
 		},
 	},
 };
